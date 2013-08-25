@@ -1,5 +1,5 @@
 
-## Submit Theme to Logdown
+## Submit theme to Logdown
 
 1. Fork this repo
 2. Create a new dirctory `your-theme-name`
