@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Amethysta' rel='stylesheet' type='text/css'>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <!--
+  <script type="text/javascript" src="/javascripts/jquery-tapir.js"></script>
+  -->
+
+    <!-- remove or comment it to disable ajaxification
+    <script src="/javascripts/ajaxify.js"></script>
+    -->
+</head>
+
+
+<body>
+  <div id="wrapper">
+    <header id="header" class="inner">
+      <h1 class="animated bounceInDown">
+        <div id="headerbg">{{ blog.title }}</div>
+      </h1>
+
+      <ul id="nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="{{ blog.archives_url }}">Archives</a></li>
+        <li><a href="{{ blog.rss_url }}">RSS</a></li>
+
+        <li>
+          <div id="dark">
+            <form accept-charset="UTF-8" action="{{ blog.search_posts_url }}" method="get">
+              <input name="q" type="search" placeholder="Search..." x-webkit-speech />
+            </form>
+          </div>
+        </li>
+      </ul>
+    </header>
+
+    <div id="toload">
+      <div id="content" class="inner">
+
+        {% block search_page %}
+          <p class="search-result-meta">
+            Your search for <strong>“ {{ query_string }} ”</strong>
+            matches <strong> {{ results_count }} </strong> results:
+          </p>
+        {% endblock %}
+
+        {% block tags_page %}
+          <p class="search-result-meta">
+            Posts match <strong>“ {{ tag_name }} ”</strong> tag:
+          </p>
+        {% endblock %}
+
+        {% block archives_page %}
+          {% block archives %}
+            <section class="archives">
+              <h1 class="year">{{archive.year}}</h1>
+
+              {% block posts %}
+                <article>
+                  <h2 class="title">
+                    <a href="{{post.absolute_url}}" class="archive-link">{{post.title}}</a>
+                  </h2>
+                  <div class="meta">
+                    <span class="date">
+                      {{post.published_at.short_month}}
+                      {{post.published_at.day_of_month}}
+                    </span>
+                    {% block tag_list %}
+                      <span class="tags">
+                        {% block tags %}
+                          <a class="category" href="{{tag.url}}">{{tag.name}}</a>,
+                        {% endblock %}
+                      </span>
+                    {% endblock %}
+                  </div>
+                </article>
+              {% endblock %}
+            </section>
+          {% endblock %}
+        {% endblock %}
+
+        {% block posts %}
+          <article class="post">
+            <h2 class="title">
+              <a href="{{post.absolute_url}}">
+                {% block tags_page|index_page|show_page %}
+                  {{post.title}}
+                {% endblock %}
+
+                {% block search_page %}
+                  {{ post.title | highlight: query_string }}
+                {% endblock %}
+              </a>
+            </h2>
+
+            <div class="entry-content">
+              <div class="meta">
+                <div class="date">
+                  Published on:
+                  <time datetime="{{post.published_at.utc}}" pubdate>
+                    {{post.published_at.date}}
+                  </time>
+                </div>
+
+                {% block tag_list %}
+                  <div class="tags">Tags:
+                    {% block tags %}
+                      <a href="{{tag.url}}">{{tag.name}}</a>,
+                    {% endblock %}
+                  </div>
+                {% endblock %}
+              </div>
+
+              {% block search_page %}
+                {{ post.content | search_content: query_string }}
+              {% endblock %}
+
+
+              {% block index_page|tags_page %}
+                {{ post.excerpt_content }}
+
+                {% block readmore %}
+                  <a href="{{post.absolute_url}}" class="more-link">Read on</a>
+                {% endblock %}
+              {% endblock %}
+
+              {% block show_page %}
+                {{ post.content }}
+              {% endblock %}
+            </div>
+
+            <div class="meta"></div>
+          </article>
+
+          {% block show_page %}
+            <div class="share">
+              {% block twitter_sharing %}
+                <a href="https://twitter.com/share?" class="twitter-share-button">Tweet</a>
+              {% endblock %}
+
+              {% block google_plus_sharing %}
+                <div class="g-plusone" data-size="medium"></div>
+              {% endblock %}
+
+              {% block facebook_sharing %}
+                <div class="fb-like" data-href="{{post.absolute_url}}" data-layout="button_count" data-send="false" data-show-faces="false" data-width="90"></div>
+              {% endblock %}
+            </div>
+      
+            {% block disqus %}
+              <section id="comment">
+                <h2 class="title">Comments</h2>
+
+                  {% disqus %}
+               </section>
+            {% endblock %}
+       
+          {% endblock %}
+
+        {% endblock %}
+
+        {% block index_page|search_page|tags_page %}
+          <nav id="pagenavi">
+            {% paginate %}
+            <a href="{{ blog.archives_url }}" class="center">Blog Archives</a>
+          </nav>
+        {% endblock %}
+
+      </div>
+
+      <footer id="footer">
+        <div style="display:inline">
+          Copyright &copy; 2013 {{ blog.user_name }}.
+          Powered by <a href="http://logdown.com/">Logdown</a> |
+          Theme <a href="http://github.com/panks/fabric">fabric</a> by <a href="http://panks.me">Pankaj Kumar</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
