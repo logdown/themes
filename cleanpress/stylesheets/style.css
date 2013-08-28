@@ -12,7 +12,7 @@ width:100%;
 text-align:right;
 font-size:13px;
 line-height:1.45em;
-background:#073642 url(/images/noise.png?1357400952) top left!important;
+background:#073642 url(/cleanpress/images/noise.png?1357400952) top left!important;
 border-right:1px solid #00232c!important;
 text-shadow:#021014 0 -1px;
 -moz-border-radius:0;
@@ -44,7 +44,7 @@ html .gist .gist-file .gist-meta {
 border:1px solid #083e4b!important;
 color:#586e75;
 font-size:.7em!important;
-background:#073642 url(/images/noise.png?1357400952) top left;
+background:#073642 url(/cleanpress/images/noise.png?1357400952) top left;
 line-height:1.5em;
 padding:.6em .8em;
 }
@@ -70,7 +70,7 @@ top:.4em;
 }
 
 pre {
-background:#002b36 url(/images/noise.png?1357400952) top left;
+background:#002b36 url(/cleanpress/images/noise.png?1357400952) top left;
 -moz-border-radius:.4em;
 -o-border-radius:.4em;
 -ms-border-radius:.4em;
@@ -134,7 +134,7 @@ overflow-y:hidden;
 display:block;
 overflow-x:auto;
 line-height:1.45em;
-background:#002b36 url(/images/noise.png?1357400952) top left!important;
+background:#002b36 url(/cleanpress/images/noise.png?1357400952) top left!important;
 color:#93a1a1!important;
 padding:.8em!important;
 }
@@ -293,7 +293,7 @@ border-top-left-radius:5px;
 -webkit-border-top-right-radius:5px;
 border-top-right-radius:5px;
 font-family:"Helvetica Neue", Arial, "Lucida Grande", "Lucida Sans Unicode", Lucida, sans-serif;
-background:#aaa url(/images/code_bg.png?1357400952) top repeat-x;
+background:#aaa url(/cleanpress/images/code_bg.png?1357400952) top repeat-x;
 border:1px solid #565656;
 border-top-color:#cbcbcb;
 border-left-color:#a5a5a5;
