@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href="http://cdn-theme.logdown.io/its-compiling/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 </head>
 
@@ -171,11 +172,44 @@
         </div>
       {% endblock %}
 
+      {% block pagination %}
+      <div class="pagination pagination-centered">
+        <ul>
+          {% block previous_page %}
+            <li class="prev previous_page ">
+              <a href="{{previous_page_url}}">Previous</a>
+            </li>
+          {% endblock %}
 
+          {% block jump_pagination %}
 
+            {% block current_page %}
+              <li class="active">
+                <a href="#">{{page_number}}</a>
+              </li>
+            {% endblock %}
 
-      {% block index_page|search_page|tags_page %}
-        {% paginate %}
+            {% block page_gap %}
+              <li class="disabled">
+                <a href="#"><span class="gap">…</span></a>
+              </li>
+            {% endblock %}
+
+            {% block jump_page %}
+              <li>
+                <a href="{{page_url}}">{{page_number}}</a>
+              </li>
+            {% endblock %}
+
+          {% endblock %}
+
+          {% block next_page %}
+            <li class="next next_page ">
+              <a href="{{next_page_url}}">Next</a>
+            </li>
+          {% endblock %}
+        </ul>
+      </div>
       {% endblock %}
 
 

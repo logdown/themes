@@ -182,6 +182,17 @@
 
           </footer>
         </article>
+
+        {% block disqus %}
+        <section>
+          <h1>Comments</h1>
+          {% disqus %}
+        </section>
+        {% endblock %}
+
+
+
+
         {% endblock %}
 
 
