@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+  <link href="http://cdn-theme.logdown.io/fabric/stylesheets/screen.css" rel="stylesheet" type="text/css">
   <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Amethysta' rel='stylesheet' type='text/css'>
@@ -168,12 +168,22 @@
 
         {% endblock %}
 
-        {% block index_page|search_page|tags_page %}
-          <nav id="pagenavi">
-            {% paginate %}
-            <a href="{{ blog.archives_url }}" class="center">Blog Archives</a>
-          </nav>
+
+
+        {% block pagination %}
+        <nav id="pagenavi">
+          {% block previous_page %}
+            <a href="{{previous_page_url}}" class="prev">Prev</a>
+          {% endblock %}
+          {% block next_page %}
+            <a href="{{next_page_url}}" class="next">Next</a>
+          {% endblock %}
+
+          <div class="center"><a href="{{blog.archives_url}}">Blog Archives</a></div>
+        </nav>
         {% endblock %}
+
+
 
       </div>
 
