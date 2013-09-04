@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="iem7"><![endif]-->
+<!--[if lt IE 9]><html class="lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IE)]><!-->
+<html><!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="{{ blog.author_display_name }}">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet'>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" media="screen, projection" rel="stylesheet">
+    <link href="//cdn-theme.logdown.io/slash/css/screen.css" media="screen, projection" rel="stylesheet">
+    <script async src="//cdn-theme.logdown.io/slash/javascripts/slash.js"></script>
+    <link href="//cdn-theme.logdown.io/utils/stylesheets/default_code_highlight.css" media="screen, projection" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <!--[if (lt IE 9)|(lt IEMobile 8)]><div class="legacy-browser">Sorry, your browser or device is not supported.<br>Please use Chrome, Firefox, Safari or Internet Explorer 9 (or higher).</div><![endif]-->
+
+    <!--[if (gt IE 8)|(gt IEMobile 7)|!(IE)]><!-->
+
+    <header class="inner page-header" id="header">
+      <div class="logo">
+        <h1><a href="/">{{ blog.title }}</a></h1>
+      </div>
+
+      <div class="menubar">
+        <nav class="header-menu" id="header-menu">
+          <a class="toggle-menu">Menu</a>
+
+          <ul>
+            <li class="about-me">
+              <a class="menu-item" href="{{ blog.author_about_me }}">About</a>
+            </li>
+
+            <li class="archives">
+              <a class="menu-item" href="{{ blog.archives_url }}">Archives</a>
+            </li>
+          </ul>
+        </nav>
+
+        <form action="{{ search_posts_url }}" class="search" method=
+        "get">
+          <input autocomplete="off" class="search-field" name=
+          "q" results="0"><a class="button"></a>
+        </form>
+
+        <nav class="follow-me">
+          <a class="icon-github" href="{{ blog.author_github_profile_link }}" title="GitHub"></a>
+
+          <a class="icon-facebook" href="{{ blog.author_facebook_profile_link }}" title="Facebook"></a>
+
+          <a class="icon-google-plus" href="{{ blog.author_google_plus_link }}" title="Google+"></a>
+
+          <a class="icon-twitter" href="{{ blog.author_twitter_link }}" title="Twitter"></a>
+
+          <a class="icon-rss" href="{{ blog.rss_url }}" title=
+          "RSS"></a>
+        </nav>
+      </div>
+    </header>
+
+    <div id="content" class="inner content">
+      {% block tags_page|index_page|search_page %}
+      <div class="blog-index">
+      {% endblock %}
+
+      {% block show_page|archives_page %}
+      <div>
+      {% endblock %}
+
+        {% block search_page %}
+        <article>
+          Your search for <strong>“ {{ query_string }} ”</strong> matches <strong> {{ results_count }} </strong> results:
+        </article>
+        {% endblock %}
+
+        {% block tags_page %}
+        <article>
+          Posts match <strong>“ {{ tag_name }} ”</strong> tag:
+        </article>
+        {% endblock %}
+
+        {% block archives_page %}
+        <article role="article">
+          <header>
+            <h1 class="entry-title">Blog Archive</h1>
+          </header>
+
+          <div id="blog-archives" class="archives">
+            {% block archives %}
+            <h2 class="year">{{archive.year}}</h2>
+
+            {% block posts %}
+            <article class="">
+              <header class="entry-header">
+                <h2 class="title"><a href="{{ post.absolute_url }}">{{ post.title }}</a></h2>
+              </header>
+
+              <footer class="entry-footer">
+                <time datetime="{{ post.published_at.utc }}" pubdate>{{ post.published_at | '%b %d' }}</time>
+
+
+                <div class="tags">{% block tags %}<a href="{{ tag.url }}">{{ tag.name }}</a>{% endblock %}</div>
+              </footer>
+            </article>
+            {% endblock %}
+            <!-- end block posts -->
+
+            {% endblock %}
+          </div>
+        </article>
+        {% endblock %}
+
+        <!-- main post list -->
+        {% block posts %}
+        <article>
+          <header class="entry-header">
+            <h2 class="title">
+              <a href="{{ post.absolute_url }}">
+                {% block show_page|tags_page|index_page %}
+                <a href="{{ post.absolute_url }}">{{post.title}}</a>
+                {% endblock %}
+
+                {% block search_page %}
+                <a href="{{ post.absolute_url }}">{{ post.title | highlight: query_string }}</a>
+                {% endblock %}
+              </a>
+            </h2>
+          </header>
+
+          <div class="entry-content">
+            {% block search_page %}
+            {{ post.content | search_content: query_string }}
+            {% endblock %}
+
+            {% block index_page|tags_page %}
+
+            {{ post.excerpt_content }}
+
+              {% block readmore %}
+              <a rel="full-article" href="{{ post.absolute_url }}" class="more-link">Read on &rarr;</a>
+              {% endblock %}
+
+            {% endblock %}
+
+            {% block show_page %}
+            {{ post.content }}
+            {% endblock %}
+          </div>
+
+          <footer class="entry-footer">
+            <span class="byline author vcard">Posted by <span class="fn">{{ post.author_name }}</span></span>
+            <time datetime="{{ post.published_at.utc }}" pubdate data-updated="true">{{ post.published_at.date }}</time>
+            <div class="tags">{% block tags %}<a href="{{ tag.url }}">{{ tag.name }}</a>{% endblock %}</div>
+          </footer>
+        </article>
+        {% endblock %}
+        <!-- end main post list -->
+
+        {% block disqus %}
+        <section>
+          <h1>Comments</h1>
+          {% disqus %}
+        </section>
+        {% endblock %}
+
+        {% block pagination %}
+        <div class="pagination">
+          {% block previous_page %}
+          <a class="next" href="{{previous_page_url}}">Newer</a>
+          {% endblock %}
+
+          <a href="{{ blog.archives_url }}">Blog Archives</a>
+
+          {% block next_page %}
+          <a class="prev" href="{{next_page_url}}">Older</a>
+          {% endblock %}
+
+        </div>
+        {% endblock %}
+
+      </div> <!-- end content -->
+    </div>
+
+    <footer class="inner page-footer" id="footer">
+      © 2013&nbsp;{{ blog.user_name }}.
+      <div class="credit">
+        Theme "Slash" by <a href="https://github.com/tommy351/Octopress-Theme-Slash">tommy351</a>, customized by <a href="http://chrisyip.im/">Chris Yip<a>.
+      </div>
+    </footer>
+
+  <!--<![endif]-->
+  </body>
+</html>
