@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="{{blog.author_display_name}}">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://cdn-theme.logdown.io/breeze/stylesheets/normalize.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://cdn-theme.logdown.io/breeze/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <h1><a href="/">{{ blog.title }}</a></h1>
+  <h2>{{ blog.tagline }}</h2>
+
+  {% block search_page %}
+      Your search for <strong>“ {{ query_string }} ”</strong> matches <strong> {{ results_count }} </strong> results:
+  {% endblock %} <!-- if_search_page_view_end -->
+
+  {% block tags_page %}
+      Posts match <strong>“ {{ tag_name }} ”</strong> tag:
+  {% endblock %} <!-- if_view_by_tags_end -->
+
+        {% block archives_page %}
+          <h2 class="entry-title">Blog Archives</h2>
+
+          {% block archives %}
+          <h2 class="year-title">{{archive.year}}</h2>
+
+            {% block posts %}
+              <h2 class="title"><a href="{{post.absolute_url}}" class="archive-link">{{post.title}}</a></h2>
+              <time datetime="{{post.published_at.utc}}" pubdate>
+                <span class='month'>{{post.published_at.short_month}}</span>
+                <span class='day'>{{post.published_at.day_of_month}}</span>
+                <span class='year'>{{post.published_at.full_year}}</span>
+              </time>
+
+              {% block tag_list %}
+                <span class="categories">
+                  {% block tags %}
+                    <a class="category" href="{{tag.url}}">{{tag.name}}</a>,
+                  {% endblock %} <!-- tags_loop_end -->
+                </span>
+              {% endblock %} <!-- tag_list_loop_end -->
+
+            {% endblock %} <!-- posts_loop_end -->
+
+          {% endblock %} <!-- archives_loop_end -->
+
+        {% endblock %} <!-- if_view_by_archives_end -->
+
+        {% block posts %}
+          <h2 class="entry-title">
+            {% block show_page %}
+              {{post.title}}
+            {% endblock %} <!-- if_single_page_view_end -->
+
+            {% block tags_page|index_page %}
+              <a href="{{post.absolute_url}}">{{post.title}}</a>
+            {% endblock %} <!-- if_view_by_tags_or_index_end -->
+
+            {% block search_page %}
+              <a href="{{post.absolute_url}}">{{ post.title | highlight: query_string }}</a>
+            {% endblock %} <!-- if_search_page_view_end -->
+          </h2>
+
+            {% block tags_page|index_page|search_page %}
+              <p class="meta">
+                <time datetime="{{post.published_at.utc}}" pubdate="" data-updated="true">{{ post.published_at.date }}</time>
+              </p>
+
+              {% block disqus %}
+                | <a href="{{post.absolute_url}}#disqus_thread">Comments</a>
+              {% endblock %} <!-- disqus_module_end -->
+            {% endblock %} <!-- if_view_by_tags_index_or_search_page_end -->
+
+            {% block tag_list %}
+            <span class="categories">
+              {% block tags %}
+                <a class="category" href="{{tag.url}}">{{tag.name}}</a>,
+              {% endblock %} <!-- tags_loop_end -->
+            </span>
+            {% endblock %} <!-- tag_list_loop_end -->
+
+
+              {% block search_page %}
+                {{ post.content | search_content: query_string }}
+              {% endblock %}
+
+              {% block index_page|tags_page %}
+                {{ post.excerpt_content }}
+              {% endblock %}
+
+
+              {% block show_page %}
+                {{ post.content }}
+              {% endblock %}
+
+
+
+              {% block index_page|tags_page %}
+                {% block readmore %}
+                  <a rel="full-article" href="{{post.absolute_url}}">Read on &rarr;</a>
+                {% endblock %}
+              {% endblock %}
+
+
+              {% block show_page %}
+                  Posted by {{ post.author_name }}
+                  <time datetime="{{post.published_at.utc}}" pubdate data-updated="true">{{post.published_at.date}}</time>
+
+                <div class="sharing">
+                  {% block twitter_sharing %}
+                    <a href="https://twitter.com/share?" class="twitter-share-button">Tweet</a>
+                  {% endblock %}
+
+                  {% block google_plus_sharing %}
+                     <div class="g-plusone" data-size="medium"></div>
+                  {% endblock %}
+
+                  {% block facebook_sharing %}
+                  <div class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-href="{{post.absolute_url}}" data-layout="button_count" data-send="false" data-show-faces="false" data-width="90"></div>
+                  {% endblock %}
+
+                </div>
+              {% endblock %} <!-- if_single_page_view_end -->
+
+          {% block show_page %}
+            {% block disqus %}
+                <h2>Comments</h2>
+                {% disqus %}
+            {% endblock %} <!-- disqus_module_end -->
+          {% endblock %} <!-- if_single_page_view_end -->
+
+        {% endblock %} <!-- posts_loop_default_index_end -->
+
+        {% block pagination %}
+          <div class="pagination">
+            {% block previous_page %}
+              <a class="next" href="{{previous_page_url}}">Newer &rarr;</a>
+            {% endblock %}
+
+            <a href="{{ blog.archives_url }}">Blog Archives</a>
+
+            {% block next_page %}
+              <a class="prev" href="{{next_page_url}}">&larr; Older</a>
+            {% endblock %}
+          </div>
+        {% endblock %} <!-- pagination_module_end -->
+
+
+        <form action="{{ blog.search_posts_url }}" method="get">
+          <fieldset role="search">
+            <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+          </fieldset>
+        </form>
+
+
+          <h2>About me</h2>
+          <p>{{blog.author_about_me}}</p>
+
+  <footer role="contentinfo">
+      Copyright &copy; {{ blog.author_display_name }} -
+      Powered by <a href="http://logdown.com">Logdown</a> -
+      Theme <a href="https://github.com/alexharris/breeze/">Breeze</a> by Devin Chen
+  </footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</body>
+
+</html>
