@@ -1,1 +1,21 @@
 // some mixin go here
+$breeze: #82CAD9;
+$green: #C4E3C3;
+$gray: #F3F3F3;
+
+@mixin font-main {
+	font-family: 'Playfair Display', serif;
+}
+@mixin source-code {
+	font-family: 'Source Code Pro', sans-serif;
+}
+@mixin reset-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+@mixin transition($property, $time){
+	-webkit-transition: $property #{$time}s ease;
+		 -moz-transition: $property #{$time}s ease;
+					transition: $property #{$time}s ease;
+}

@@ -1,12 +1,13 @@
 .figure-code {
 
 	figcaption {}
+	.highlight {
+
+		pre { background: transparent; color: #f8f8f2 }
+	}
 }
-.highlight {
-	background: #272822;
-	color: #f8f8f2;
+.code {
 	
-	pre { background: transparent; color: #f8f8f2 }
 	.c { color: #586E75 } // Comment
 	.err { color: #93A1A1 } // Error
 	.g { color: #93A1A1 } // Generic
