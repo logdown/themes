@@ -1,9 +1,32 @@
 .figure-code {
+	font-size: 13px;
+	line-height: 20px;
+	margin: 2.5em 0;
+	@include source-code;
 
-	figcaption {}
+	figcaption {
+		overflow: hidden;
+
+		span {
+			float: left;
+			background-color: $breeze;
+			color: white;
+			font-size: 12px;
+			line-height: 1em;
+			height: 1em;
+			padding: 6px;
+		}
+	}
 	.highlight {
+		// margin-left: -120px;
+		padding: 10px;
+		// padding-left: 120px;
+		background-color: $gray;
 
-		pre { background: transparent; color: #f8f8f2 }
+		pre {
+			background: transparent;
+			margin: 0;
+		}
 	}
 }
 .code {

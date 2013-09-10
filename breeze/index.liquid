@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if IEMobile 7 ]><html class="iem7"><![endif]-->
+<!--[if lt IE 9]><html class="lte-ie8"><![endif]-->
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
@@ -16,8 +16,24 @@
 </head>
 
 <body>
-  <h1><a href="/">{{ blog.title }}</a></h1>
-  <h2>{{ blog.tagline }}</h2>
+  <header class="page-header">
+    <div class="wrapper">
+    <h1 class="blog-headline"><a href="/">{{ blog.title }}</a></h1>
+    <h2 class="blog-tagline">{{ blog.tagline }}</h2>
+    <img alt="{{blog.author_display_name}}" title="About {{blog.author_display_name}}" class="avatar" src="//www.gravatar.com/avatar/{{blog.author_gravatar_hash}}?s=70">
+      <nav>
+        <ul class="main-navigation">
+          <li><a href="/">Blog</a></li>
+          <li><a href="{{ blog.archives_url }}">Archives</a></li>
+        </ul>
+      </nav>
+      </div>
+      <section class="blog-about">
+        <h2>About me</h2>
+          <div class="holder">{{blog.author_about_me}}</div>
+      </section>
+  </header>
+<div class="wrapper">  
 
   {% block search_page %}
       Your search for <strong>“ {{ query_string }} ”</strong> matches <strong> {{ results_count }} </strong> results:
@@ -160,15 +176,12 @@
             <input class="search" type="text" name="q" results="0" placeholder="Search"/>
           </fieldset>
         </form>
-
-
-          <h2>About me</h2>
-          <p>{{blog.author_about_me}}</p>
-
-  <footer role="contentinfo">
-      Copyright &copy; {{ blog.author_display_name }} -
-      Powered by <a href="http://logdown.com">Logdown</a> -
+    </div>
+  <footer class="page-footer">
+    <div class="wrapper">
+      Copyright &copy; {{ blog.author_display_name }} - Powered by <a href="http://logdown.com">Logdown</a><br/>
       Theme <a href="https://github.com/alexharris/breeze/">Breeze</a> by Devin Chen
+    </div>
   </footer>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

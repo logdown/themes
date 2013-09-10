@@ -1,0 +1,22 @@
+@media (max-width: 800px) {
+	.page-header .avatar {
+		right: 60px;
+	}
+  .wrapper {
+  	padding: 0 60px;
+  }
+  body > .wrapper {
+  	overflow: hidden;
+  }
+}
+@media (max-width: 500px) {
+	.page-header .avatar {
+		right: 20px;
+	}
+  .wrapper {
+  	padding: 0 20px;
+  }
+  body > .wrapper {
+  	overflow: hidden;
+  }
+}

@@ -5,20 +5,24 @@
 @import 'helper';
 
 .wrapper {
-	width: 560px;
+	// width: 560px;
+	max-width: 640px;
 	padding: 0 120px;
+	margin: auto;
 }
 
 // page header
 .page-header {
 	background: $breeze;
-	overflow: hidden;
 
+	.wrapper {
+		position: relative;
+	}
 	.blog-headline {
 		font-size: 2.875em;
 		font-weight: normal;
 		margin: 0;
-		padding: 1em 0 0.25em 0;
+		padding: 1em 0 0 0;
 		@include font-main;
 
 		a {
@@ -27,22 +31,41 @@
 		}
 	}
 	.blog-tagline {
-		color: darken($breeze, 30%);
+		color: $breeze-dark;
+		font-size: 1em;
+		font-style: italic;
+		line-height: 1.5em;
+		margin: 0;
+		padding: 12px 30px;
 
 		&:before {
 			content: "\0022";
-			display: block;
-			font-size: 90px;
+			display: inline-block;
+			margin: 0 16px 0 -30px;
+			font-size: 60px;
+			position: relative;
+			top: 10px;
 		}
 	}
 	.avatar {
 		border: solid 4px #FFF;
 		border-radius: 40px;
+		position: absolute;
+		right: 120px;
+		bottom: -39px;
+	}
+	.blog-about {
+		display: none;
+		overflow: hidden;
+		background-color: $breeze-dark;
+		color: white;
+		font-size: 0.9em;
 	}
 }
 .main-navigation {
-	overflow: hidden;
 	@include reset-list;
+	overflow: hidden;
+	padding-top: 30px;
 
 	li {
 		float: left;
@@ -64,9 +87,34 @@
 	}
 }
 
+// post
+.blog-entry {
+	padding: 30px 120px;
+	margin: 0 -120px;
+	margin-bottom: 30px;
+	border-bottom: dashed 1px darken($gray, 10%);
+}
+.blog-postdate {
+	color: darken($gray, 20%);
+	font-size: 12px;
+	padding: 0 0 10px 0;
+}
+.entry-title {
+	margin: 0 -120px;
+	padding: 0 120px 40px 120px;
+
+	@include font-main;
+
+	a {
+		color: black;
+		font-size: 1.6em;
+		text-decoration: none;
+	}
+}
+
 // page footer
 .page-footer {
-	background-color: adjust-color($breeze, $saturation: -35, $lightness: +22);
+	background-color: $breeze-light;
 	font-size: 11px;
 	line-height: 1.5em;
 	padding: 40px 0;
