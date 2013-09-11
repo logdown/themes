@@ -1,7 +1,9 @@
 // some mixin go here
 $breeze: #82CAD9;
-$breeze-dark: darken($breeze, 30%);
 $breeze-light: adjust-color($breeze, $saturation: -35, $lightness: +22);
+$breeze-dark: adjust-color($breeze, $lightness: -11);
+$breeze-darkest: adjust-color($breeze, $lightness: -28);
+$breeze-desat : adjust-color($breeze, $saturation: -44, $lightness: -12);
 $green: #C4E3C3;
 $gray: #F3F3F3;
 
@@ -15,6 +17,13 @@ $gray: #F3F3F3;
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+@mixin reset-input-field {
+	border: none;
+	outline: none;
+	padding: 0;
+	margin: 0;
+	background: none;
 }
 @mixin transition($property, $time){
 	-webkit-transition: $property #{$time}s ease;
