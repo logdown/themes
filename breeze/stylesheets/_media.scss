@@ -19,4 +19,15 @@
   body > .wrapper {
   	overflow: hidden;
   }
+  .post-content {
+    h1, h2, h3 {
+      &:before {
+        margin-left: 0;
+        margin-right: 0.5em;
+      }
+    }
+    img {
+      max-width: 100%;
+    }
+  }
 }

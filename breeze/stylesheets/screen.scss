@@ -10,6 +10,13 @@
 	padding: 0 120px;
 	margin: auto;
 }
+a {
+	color: $breeze-dark;
+
+	&:hover {
+		color: $breeze-darkest;
+	}
+}
 
 // page header
 .page-header {
@@ -40,7 +47,7 @@
 		padding: 12px 30px;
 
 		&:before {
-			content: "\0022";
+			content: "\002A";
 			display: inline-block;
 			margin: 0 16px 0 -30px;
 			font-size: 60px;
@@ -54,9 +61,34 @@
 		position: absolute;
 		right: 120px;
 		bottom: -39px;
+		background-color: white;
+		overflow: hidden;
+		@include transition(box-shadow, 0.3);
 
+		&:before {
+			content: "Click!";
+			display: block;
+			width: 70px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			margin-top: -40px;
+			@include transition(all, 0.3);
+		}
 		&:hover {
-			
+			box-shadow: 0 0 0 8px fade-out(white, 0.2);
+
+			img {
+				margin-bottom: -40px;
+			}
+		}
+		&:hover:before {
+			margin-top: 0;
+		}
+		img {
+			// border-radius: 40px;
+			display: block;
+			@include transition(all, 0.3);
 		}
 	}
 }
@@ -134,11 +166,83 @@
 }
 
 // show page
+.post-content {
+	color: #666;
+	font-size: 0.93em;
+	line-height: 1.8em;
+
+	@import 'post-format';
+	
+}
 .sharing {
 	padding: 20px 0;
 	margin: 30px 0;
 	border-top: solid 1px $gray;
 	border-bottom: solid 1px $gray;
+}
+.read-more {
+	text-align: right;
+	margin: 1em 0;
+
+	a {
+		font-size: 0.75em;
+		font-style: italic;
+		text-decoration: none;
+		display: inline-block;
+		background-color: darken($gray, 40%);
+		color: white;
+		padding: 4px 8px;
+		@include font-main;
+
+		&:hover {
+			background-color: darken($gray, 30%);
+		}
+	}
+}
+
+// pagonation
+.pagination {
+	padding: 30px 0;
+	border-top: solid 1px $gray;
+
+	ul {
+		text-align: center;
+		position: relative;
+		@include reset-list;
+		padding: 0 60px;
+
+		li {
+			display: inline-block;
+			margin: 0 3px;
+			@include font-main;
+		}
+		.active a {
+			color: $breeze-desat;
+		}
+		.nav {
+			position: absolute;
+			top: 0;
+
+			a {
+				color: white;
+				text-decoration: none;
+				display: block;
+				margin: -4px 0;
+				padding: 4px 8px;
+				background-color: $breeze-darkest;
+
+				&:hover {
+					background-color: $breeze;
+				}
+			}
+			&.next {
+				right: 0;
+			}
+			&.prev {
+				left: 0;
+			}
+		}
+	}
 }
 
 // page footer

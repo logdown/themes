@@ -25,6 +25,16 @@ $gray: #F3F3F3;
 	margin: 0;
 	background: none;
 }
+@mixin gradient-linear($color1, $color2, $stop1, $stop2) {
+	background: $color1;
+	background: -moz-linear-gradient(left,  $color1 $stop1, $color2 $stop2);
+	background: -webkit-gradient(linear, left top, right top, color-stop($stop1,$color1), color-stop($stop2,$color2));
+	background: -webkit-linear-gradient(left,  $color1 $stop1,$color2 $stop2);
+	background: -o-linear-gradient(left,  $color1 $stop1,$color2 $stop2);
+	background: -ms-linear-gradient(left,  $color1 $stop1,$color2 $stop2);
+	background: linear-gradient(to right,  $color1 $stop1,$color2 $stop2);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=1 );
+}
 @mixin transition($property, $time){
 	-webkit-transition: $property #{$time}s ease;
 		 -moz-transition: $property #{$time}s ease;
