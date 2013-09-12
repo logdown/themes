@@ -1,0 +1,64 @@
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	color: #000;
+	@include font-main;
+
+}
+h1, h2, h3 {
+	margin-top: 2.8em;
+
+	&:before {
+		content: "\00A7";
+		text-align: center;
+		background-color: $green;
+		border: solid 2px darken($green, 10%);
+		color: white;
+		float: left;
+		width: 1em;
+		height: 1.3em;
+		line-height: 1.2em;
+		margin-left: -1.5em;
+	}
+	&:first-child {
+		margin-top: auto;
+	}
+}
+code {
+	background-color: $breeze-light;
+	border: solid 1px darken($breeze-light, 10%);
+	color: #333;
+	display: inline-block;
+	padding: 0 3px;
+	margin: 0 2px;
+	font-size: 0.9em;
+}
+blockquote {
+	border-left: solid 8px darken($gray, 10%);
+	margin-left: 0;
+	padding: 1em 2em;
+	font-size: 1.2em;
+	font-style: italic;
+	@include font-main;
+	@include gradient-linear($gray, white, 0%, 80%)
+}
+del, strike, s {
+	text-decoration: none;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQIW2NkYGAwBuKzjEACBIwBCywBNiVQTBEAAAAASUVORK5CYII=);
+	color: darken($gray, 10%);
+
+	&:hover {
+		color: #333;
+	}
+}
+table {
+
+	th, td {
+		padding: 4px;
+		border: solid 1px darken($gray, 10%);
+	}
+	thead th {
+		background-color: $breeze-desat;
+		color: white;
+		border-color: $breeze-desat;
+	}
+}
