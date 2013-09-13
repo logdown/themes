@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href='http://fonts.googleapis.com/css?family=Playfair+Display|Source+Code+Pro|Roboto:400,400italic' rel='stylesheet' type='text/css'>
-  <link href="http://www.pixeldoeverything.com/logdown_themes/breeze/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="http://www.pixeldoeverything.com/logdown_themes/breeze/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -20,58 +20,65 @@
     <div class="wrapper">
     <h1 class="blog-headline"><a href="/">{{ blog.title }}</a></h1>
     <h2 class="blog-tagline">{{ blog.tagline }}</h2>
-    <img alt="{{blog.author_display_name}}" title="About {{blog.author_display_name}}" class="avatar" src="//www.gravatar.com/avatar/{{blog.author_gravatar_hash}}?s=70">
+      <a href="" title="About {{blog.author_display_name}}" class="avatar fn_call" fx="slidedodwn" target=".blog-about"><img alt="{{blog.author_display_name}}" src="//www.gravatar.com/avatar/{{blog.author_gravatar_hash}}?s=70"></a>
       <nav>
         <ul class="main-navigation">
-          <li><a href="/">Blog</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="{{ blog.archives_url }}">Archives</a></li>
+          <li><a href="{{ blog.rss_url }}">Feed</a></li>
+          <li><a class="call_fn" href="" fx="fadein" target="#search-field">Search</a></li>
         </ul>
       </nav>
       </div>
-      <section class="blog-about">
-        <h2>About me</h2>
-          <div class="holder">{{blog.author_about_me}}</div>
-      </section>
   </header>
+    <div class="blog-about">
+        <div class="wrapper">
+        <h2 class="title">About</h2>
+        <div class="holder">{{blog.author_about_me}}</div>
+        </div>
+      </div>
 <div class="wrapper">  
 
   {% block search_page %}
-      Your search for <strong>“ {{ query_string }} ”</strong> matches <strong> {{ results_count }} </strong> results:
+  <div class="message">Your search for <strong>“ {{ query_string }} ”</strong> matches <strong> {{ results_count }} </strong> results:</div>
   {% endblock %} <!-- if_search_page_view_end -->
 
   {% block tags_page %}
-      Posts match <strong>“ {{ tag_name }} ”</strong> tag:
+      <div class="message">Posts Tagged <strong>“ {{ tag_name }} ”</strong></div>
   {% endblock %} <!-- if_view_by_tags_end -->
 
         {% block archives_page %}
-          <h2 class="entry-title">Blog Archives</h2>
+  <div class="page-archives">
+          <h2 class="entry-title">Archives</h2>
 
           {% block archives %}
           <h2 class="year-title">{{archive.year}}</h2>
-
+<div class="year-holder">
             {% block posts %}
-              <h2 class="title"><a href="{{post.absolute_url}}" class="archive-link">{{post.title}}</a></h2>
-              <time datetime="{{post.published_at.utc}}" pubdate>
+  <div class="entry">
+              <time datetime="{{post.published_at.utc}}" class="pubdate">
                 <span class='month'>{{post.published_at.short_month}}</span>
                 <span class='day'>{{post.published_at.day_of_month}}</span>
-                <span class='year'>{{post.published_at.full_year}}</span>
               </time>
+              <h2 class="title"><a href="{{post.absolute_url}}" title="{{post.title}}" class="archive-link">{{post.title}}</a></h2>
 
-              {% block tag_list %}
-                <span class="categories">
-                  {% block tags %}
-                    <a class="category" href="{{tag.url}}">{{tag.name}}</a>,
-                  {% endblock %} <!-- tags_loop_end -->
-                </span>
-              {% endblock %} <!-- tag_list_loop_end -->
-
+              
+  </div>
             {% endblock %} <!-- posts_loop_end -->
-
+    </div>
           {% endblock %} <!-- archives_loop_end -->
-
+  </div>
         {% endblock %} <!-- if_view_by_archives_end -->
-
+        
+        
         {% block posts %}
+  <div class="blog-entry">
+          {% block index_page|show_page %}
+            
+              <div class="meta">
+                <time class="blog-postdate" datetime="{{post.published_at.utc}}" pubdate="" data-updated="true">{{ post.published_at.date }}</time> | Posted by {{ post.author_name }}
+              </div>
+            {% endblock %} <!-- if_view_by_index_or_show_page_end -->
           <h2 class="entry-title">
             {% block show_page %}
               {{post.title}}
@@ -86,25 +93,11 @@
             {% endblock %} <!-- if_search_page_view_end -->
           </h2>
 
-            {% block tags_page|index_page|search_page %}
-              <p class="meta">
-                <time datetime="{{post.published_at.utc}}" pubdate="" data-updated="true">{{ post.published_at.date }}</time>
-              </p>
+            
 
-              {% block disqus %}
-                | <a href="{{post.absolute_url}}#disqus_thread">Comments</a>
-              {% endblock %} <!-- disqus_module_end -->
-            {% endblock %} <!-- if_view_by_tags_index_or_search_page_end -->
+            
 
-            {% block tag_list %}
-            <span class="categories">
-              {% block tags %}
-                <a class="category" href="{{tag.url}}">{{tag.name}}</a>,
-              {% endblock %} <!-- tags_loop_end -->
-            </span>
-            {% endblock %} <!-- tag_list_loop_end -->
-
-
+              <div class="post-content">
               {% block search_page %}
                 {{ post.content | search_content: query_string }}
               {% endblock %}
@@ -112,25 +105,30 @@
               {% block index_page|tags_page %}
                 {{ post.excerpt_content }}
               {% endblock %}
+    
 
 
               {% block show_page %}
                 {{ post.content }}
               {% endblock %}
-
+</div>
 
 
               {% block index_page|tags_page %}
                 {% block readmore %}
-                  <a rel="full-article" href="{{post.absolute_url}}">Read on &rarr;</a>
+    <div class="read-more"><a rel="full-article" href="{{post.absolute_url}}">Read on &rarr;</a></div>
                 {% endblock %}
               {% endblock %}
 
-
               {% block show_page %}
-                  Posted by {{ post.author_name }}
-                  <time datetime="{{post.published_at.utc}}" pubdate data-updated="true">{{post.published_at.date}}</time>
-
+                  
+                {% block tag_list %}
+    <div class="categories"><span class="title">Tags: </span>
+                  {% block tags %}
+                    <a class="category" href="{{tag.url}}">{{tag.name}}</a>
+                  {% endblock %} <!-- tags_loop_end -->
+                </div>
+                {% endblock %} <!-- tag_list_loop_end -->
                 <div class="sharing">
                   {% block twitter_sharing %}
                     <a href="https://twitter.com/share?" class="twitter-share-button">Tweet</a>
@@ -149,41 +147,65 @@
 
           {% block show_page %}
             {% block disqus %}
-                <h2>Comments</h2>
                 {% disqus %}
             {% endblock %} <!-- disqus_module_end -->
           {% endblock %} <!-- if_single_page_view_end -->
+           
+              </div>
+            
 
         {% endblock %} <!-- posts_loop_default_index_end -->
-
-        {% block pagination %}
-          <div class="pagination">
-            {% block previous_page %}
-              <a class="next" href="{{previous_page_url}}">Newer &rarr;</a>
-            {% endblock %}
-
-            <a href="{{ blog.archives_url }}">Blog Archives</a>
-
-            {% block next_page %}
-              <a class="prev" href="{{next_page_url}}">&larr; Older</a>
-            {% endblock %}
-          </div>
-        {% endblock %} <!-- pagination_module_end -->
-
-
-        <form action="{{ blog.search_posts_url }}" method="get">
-          <fieldset role="search">
-            <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-          </fieldset>
-        </form>
     </div>
+    {% block pagination %}
+  <div class="pagination wrapper">
+    <ul>
+      {% block previous_page %}
+        <li class="nav prev previous_page ">
+          <a href="{{previous_page_url}}">Prev</a>
+        </li>
+      {% endblock %}
+
+      {% block jump_pagination %}
+
+        {% block current_page %}
+          <li class="active">
+            <a href="#">{{page_number}}</a>
+          </li>
+        {% endblock %}
+
+        {% block page_gap %}
+          <li class="disabled">
+            <a href="#"><span class="gap">…</span></a>
+          </li>
+        {% endblock %}
+
+        {% block jump_page %}
+          <li>
+            <a href="{{page_url}}">{{page_number}}</a>
+          </li>
+        {% endblock %}
+
+      {% endblock %}
+
+      {% block next_page %}
+        <li class="nav next next_page ">
+          <a href="{{next_page_url}}">Next</a>
+        </li>
+      {% endblock %}
+    </ul>
+  </div>
+  {% endblock %}<!-- pagination_module_end -->
   <footer class="page-footer">
     <div class="wrapper">
-      Copyright &copy; {{ blog.author_display_name }} - Powered by <a href="http://logdown.com">Logdown</a><br/>
-      Theme <a href="https://github.com/alexharris/breeze/">Breeze</a> by Devin Chen
+      Copyright &copy; {{ blog.author_display_name }} - Powered by <a href="http://logdown.com">Logdown</a><br>
+      Theme Breeze by <a href="http://www.pixeldoeverything.com" target="_blank">Pixel do Everything</a>
     </div>
   </footer>
-
+<div id="search-field">
+        <form action="{{ blog.search_posts_url }}" method="get">
+            <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </form>
+  </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </body>
 

@@ -5,6 +5,7 @@ $breeze-dark: adjust-color($breeze, $lightness: -11);
 $breeze-darkest: adjust-color($breeze, $lightness: -28);
 $breeze-desat : adjust-color($breeze, $saturation: -44, $lightness: -12);
 $green: #C4E3C3;
+$yellow-light: #FFFABE;
 $gray: #F3F3F3;
 
 @mixin font-main {
@@ -35,8 +36,15 @@ $gray: #F3F3F3;
 	background: linear-gradient(to right,  $color1 $stop1,$color2 $stop2);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=1 );
 }
+@mixin text-shadow($x, $y, $blur, $color) {
+	-webkit-text-shadow: $x $y $blur $color;
+		 -moz-text-shadow: $x $y $blur $color;
+			-ms-text-shadow: $x $y $blur $color;
+					text-shadow: $x $y $blur $color;
+}
 @mixin transition($property, $time){
 	-webkit-transition: $property #{$time}s ease;
 		 -moz-transition: $property #{$time}s ease;
+		 	-ms-transition: $property #{$time}s ease;
 					transition: $property #{$time}s ease;
 }

@@ -1,11 +1,11 @@
 h1, h2, h3, h4, h5, h6 {
-	font-weight: normal;
+	// font-weight: normal;
 	color: #000;
-	@include font-main;
-
+	
 }
 h1, h2, h3 {
-	margin-top: 2.8em;
+	margin: 2.8em 0;
+	@include font-main;
 
 	&:before {
 		content: "\00A7";
