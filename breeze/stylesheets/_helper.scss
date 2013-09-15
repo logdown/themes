@@ -34,7 +34,7 @@ $gray: #F3F3F3;
 	background: -o-linear-gradient(left,  $color1 $stop1,$color2 $stop2);
 	background: -ms-linear-gradient(left,  $color1 $stop1,$color2 $stop2);
 	background: linear-gradient(to right,  $color1 $stop1,$color2 $stop2);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=1 );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color1}', endColorstr='#{$color2}',GradientType=1 );
 }
 @mixin text-shadow($x, $y, $blur, $color) {
 	-webkit-text-shadow: $x $y $blur $color;
@@ -47,4 +47,10 @@ $gray: #F3F3F3;
 		 -moz-transition: $property #{$time}s ease;
 		 	-ms-transition: $property #{$time}s ease;
 					transition: $property #{$time}s ease;
+}
+@mixin vendor-prefix-style($property, $value){
+	-webkit-#{$property}: $value;
+		 -moz-#{$property}: $value;
+			-ms-#{$property}: $value;
+					#{$property}: $value;
 }

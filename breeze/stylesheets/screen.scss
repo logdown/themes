@@ -132,6 +132,13 @@ a {
 		border-bottom: solid 1px adjust-color($breeze-darkest, $saturation: -30, $lightness: +20);
 		@include font-main;
 	}
+	a {
+		color: lighten($breeze, 10%);
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
 }
 .main-navigation {
 	@include reset-list;
@@ -141,7 +148,12 @@ a {
 	li {
 		float: left;
 		margin-right: 30px;
+		margin-bottom: 4px;
 
+		&:hover {
+			margin-bottom: 0;
+			border-bottom: solid 4px $green;
+		}
 		a {
 			display: block;
 			color: white;
@@ -150,9 +162,8 @@ a {
 			padding-bottom: 18px;
 			@include font-main;
 
-			&:hover {
-				padding-bottom: 14px;
-				border-bottom: solid 4px $green;
+			&:active {
+				@include vendor-prefix-style(transform, scale(0.8,0.8));
 			}
 		}	
 	}
