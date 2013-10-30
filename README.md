@@ -8,6 +8,14 @@ follow this convention to design your theme.
 
 ```
 .
+├── index.liquid
+├── _sass
+│   ├── screen.scss
+│   ├── _layout.scss
+│   └── _components.scss
+├── stylesheets
+│   ├── font-awesome.min.css
+│   ├── normalize.min.css
 ├── font
 │   ├── fontawesome-webfont.eot
 │   ├── fontawesome-webfont.svg
@@ -33,15 +41,11 @@ follow this convention to design your theme.
 │       ├── rss.png
 │       ├── stackoverflow.png
 │       └── twitter.png
-├── index.liquid
 ├── javascripts
-│   ├── jquery.fancybox.pack.js
-│   ├── md5.js
-│   ├── slash.js
-│   └── twitter.js
-└── stylesheets
-    ├── font-awesome.min.css
-    └── screen.css
+    ├── jquery.fancybox.pack.js
+    ├── md5.js
+    ├── slash.js
+    └── twitter.js
 ```    
 
 3. Submit a pull request. ( Please also attach a proper license)
