@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="{{blog.author_display_name}}">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="http://cdn-theme.logdown.io/calm-shallow-sea/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="http://cdn-theme.logdown.io/calm-shallow-sea/javascripts/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="http://cdn-theme.logdown.io/calm-shallow-sea/javascripts/octopress.js" type="text/javascript"></script>
+  <script src="http://cdn-theme.logdown.io/calm-shallow-sea/javascripts/jquery.sidr.min.js"></script>
+  <script src="http://cdn-theme.logdown.io/calm-shallow-sea/javascripts/ah-blue.js"></script>
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+  <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href="http://cdn-theme.logdown.io/calm-shallow-sea/style.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://cdn-theme.logdown.io/utils/stylesheets/default_pagination.css" media="screen, projection" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="aux-container">
+    <a id="nav-toggle" href="#sidr"></a>
+    <a id="search-toggle"></a>
+  </div>
+
+  <header class="header-container clearfix">
+      <h1>
+        <a href="/"><span>{{ blog.title }}</span></a>
+      </h1>
+  </header>
+
+  <div class="main-container">
+    <div class="main wrapper clearfix">
+
+      <aside>
+        <div class="search-container">
+          <form action="{{ blog.search_posts_url }}" method="get">
+            <fieldset role="search">
+              <input class="search-field" type="text" name="q" results="0" placeholder=""/>
+              <input class="submit" type="submit" value=""/>
+            </fieldset>
+          </form>
+        </div>
+
+        <div id="main-nav">
+          <nav>
+              <ul>
+                <li>
+                  <h4>{{blog.author_display_name}}</h4>
+                  <p>
+                    {{blog.author_about_me}}
+                  </p>
+                  <ul>
+                    <li>about.me - <a href="{{blog.author_about_me_link}}" target="_blank">{{blog.author_about_me_link}}</a>
+                    <li>Github - <a href="{{blog.author_github_profile_link}}" target="_blank">{{blog.author_github_profile_link}}</a></li>
+                    <li>Twitter - <a href="{{blog.author_twitter_link}}" target="_blank">{{blog.author_twitter_link}}</a></li>
+                    <li>Facebook - <a href="{{blog.author_facebook_profile_link}}" target="_blank">{{blog.author_facebook_profile_link}}</a></li>
+                    <li><a href="{{blog.author_google_plus_link}}" target="_blank">{{blog.author_google_plus_link}}</a></li>
+                  </ul>
+                </li>
+              </ul>
+          </nav>
+        </div>
+      </aside>
+
+      {% block search_page %}
+        <p class="search-result-meta">
+          Your search for <strong>“ {{ query_string }} ”</strong> matches <strong> {{ results_count }} </strong> results:
+        </p>
+      {% endblock %}
+
+      {% block tags_page %}
+        <p class="search-result-meta">
+          Your posts match <strong>“ {{ tag_name }} ”</strong> tag:
+        </p>
+      {% endblock %}
+
+      {% block posts %}
+      <article>
+        <header>
+
+          <div class="article-tags">
+            {% block tag_list %}
+              <span class="categories">
+                {% block tags %}
+                  <a class='category' href='{{tag.url}}'>{{tag.name}}</a>,
+                {% endblock %}
+              </span>
+            {% endblock %}
+          </div>
+
+          <h2 class="article-title">
+            <a href="{{post.absolute_url}}">
+              {% block tags_page|index_page|show_page %}
+                {{post.title}}
+              {% endblock %}
+
+              {% block search_page %}
+                {{ post.title | highlight: query_string }}
+              {% endblock %}
+            </a>
+          </h2>
+        </header>
+
+        <section>
+          {% block search_page %}
+            {{ post.content | search_content: query_string }}
+          {% endblock %}
+
+          {% block index_page|tags_page %}
+            {{ post.excerpt_content }}
+
+            {% block readmore %}
+              <a href="{{post.absolute_url}}" class="more">Read on →</a>
+            {% endblock %}
+          {% endblock %}
+
+          {% block show_page %}
+            {{ post.content }}
+          {% endblock %}
+        </section>
+
+        <footer>
+          <div class="article-date">
+            <time datetime="{{post.published_at.utc}}" itemprop="datePublished">{{post.published_at.date}}</time>
+          </div>
+        </footer>
+
+        {% block show_page %}
+          <div class="social-share">
+            {% block twitter_sharing %}
+              <a href="https://twitter.com/share?" class="twitter-share-button">Tweet</a>
+            {% endblock %}
+
+            {% block google_plus_sharing %}
+               <div class="g-plusone" data-size="medium"></div>
+            {% endblock %}
+
+            {% block facebook_sharing %}
+              <div class="fb-like" data-href="{{post.absolute_url}}" data-layout="button_count" data-send="false" data-show-faces="false" data-width="90"></div>
+            {% endblock %}
+          </div>
+
+          {% block disqus %}
+            {% disqus %}
+          {% endblock %}
+        {% endblock %}
+
+      </article>
+      {% endblock %}
+    </div>
+  </div>
+
+  {% block pagination %}
+  <div class="pagination pagination-centered">
+    <ul>
+      {% block previous_page %}
+        <li class="prev previous_page ">
+          <a href="{{previous_page_url}}">Previous</a>
+        </li>
+      {% endblock %}
+
+      {% block jump_pagination %}
+
+        {% block current_page %}
+          <li class="active">
+            <a href="#">{{page_number}}</a>
+          </li>
+        {% endblock %}
+
+        {% block page_gap %}
+          <li class="disabled">
+            <a href="#"><span class="gap">…</span></a>
+          </li>
+        {% endblock %}
+
+        {% block jump_page %}
+          <li>
+            <a rel="next" href="{{page_url}}">{{page_number}}</a>
+          </li>
+        {% endblock %}
+
+      {% endblock %}
+
+      {% block next_page %}
+        <li class="next next_page ">
+          <a rel="next" href="{{next_page_url}}">Next</a>
+        </li>
+      {% endblock %}
+    </ul>
+  </div>
+  {% endblock %}
+
+  <footer class="main-footer">
+    <section class="interior-footer">
+      Copyright © 2013 {{ blog.user_name }} .
+      <span class="credit">Powered by <a href="http://logdown.com">Logdown</a>.</span>
+      Theme “Calm, Shallow Sea” by <a href="https://github.com/alexharris/calm-shallow-sea">Alex Harris</a>.
+    </section>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+p {
+  @include leader(1);
+  @include trailer(1);
+}
+
+.main-content {
+  @include adjust-font-size-to($post-font-size);
+
+  p {
+    @include hyphenation;
+    @include leader(1, $post-font-size);
+    @include trailer(1, $post-font-size);
+  }
+
+  h2, h3, h4, h5, h6 {
+    font-family: $font-title;
+    font-weight: 600;
+  }
+
+  h2 {
+    @include adjust-font-size-to($h2-size, 2, $post-font-size);
+    @include leader(1, 36px);
+    @include trailer(1, 36px);
+  }
+
+  h3 {
+    @include adjust-font-size-to($h3-size, 2, $post-font-size);
+    @include leader(1, 30px);
+    @include trailer(1, 30px);
+  }
+
+  h4 {
+    @include adjust-font-size-to($h4-size, 1, $post-font-size);
+    @include leader(1, 24px);
+    @include trailer(1, 24px);
+  }
+
+  h5, h6 {
+    @include adjust-font-size-to($h5-size, 1, $post-font-size);
+    @include leader(1, 20px);
+    @include trailer(1, 20px);
+  }
+
+  h5 {
+    text-transform: uppercase;
+  }
+
+  h6 {
+    font-weight: 500;
+  }
+
+}

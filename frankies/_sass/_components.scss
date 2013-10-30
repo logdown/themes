@@ -1,0 +1,106 @@
+// Post Components
+.main-content {
+  // $post-font-size: 20px;
+
+  // Overall Margins
+  %vertical-margin {
+    @include leader(1, $post-font-size);
+    @include trailer(1, $post-font-size);
+  }
+
+  // Images & Alignments
+  .left {
+    @extend .pull-left;
+    margin-right: 1em;
+  }
+  .right {
+    @extend .pull-right;
+    margin-left: 1em;
+  }
+  .center {
+    margin: 0 auto;
+    display: block;
+  }
+
+  // Lists
+  ol, ul {
+    @extend %vertical-margin;
+
+    ol, ul {
+      @include leader(0.5, $post-font-size);
+      @include trailer(0.5, $post-font-size);
+    }
+
+    ul {
+      list-style: square;
+    }
+  }
+
+  // Tables
+  $table-font-size: $post-font-size;
+
+  table {
+    min-width: 80%;
+    font-size: relative-size($table-font-size, $post-font-size);
+    margin: relative-size($base-line-height, $table-font-size) auto;
+
+    @include adjust-leading-to(2, $table-font-size);
+  }
+  th, td {
+    padding: 0 0.5em;
+
+    &:first-child { padding-left: 1em; }
+    &:last-child { padding-right: 1em; }
+  }
+  tr + tr {
+    th, td {
+      line-height: relative-size($base-line-height*2 - 1, $table-font-size);
+      border-top: 1px solid rgba(0,0,0,.1);
+    }
+  }
+  thead {
+    th, td {
+      background-color: rgba(0,0,0,.11);
+      font-family: $font-title;
+      font-weight: 600;
+      text-align: left;
+      text-shadow: 0 1px 1px rgba(255,255,255,.75);
+    }
+  }
+
+  // Blockquotes
+  blockquote {
+    @extend %vertical-margin;
+    font-style: italic;
+  }
+  .figure-quote {
+    position: relative;
+    @include leader(1.5, $post-font-size);
+    @include trailer(1.5, $post-font-size);
+
+    &:before {
+      content: '“';
+      color: $post-border-color;
+      font-size: 500%;
+      position: absolute;
+      top: 0.1em;
+      left: 0;
+    }
+
+    blockquote {
+      margin: 0 0 0 2em;
+    }
+    figcaption {
+      margin: relative-size($base-line-height * -0.5) 2em;
+      @include hyphenation;
+      @include adjust-font-size-to($base-font-size, 1, $post-font-size);
+    }
+  }
+
+  // Embeded Media
+  & > iframe, .post-content > iframe {
+    @extend %vertical-margin;
+    max-width: 100%;
+    display: block;
+  }
+}

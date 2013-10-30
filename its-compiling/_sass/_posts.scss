@@ -1,0 +1,20 @@
+$search-strong-color: #cc0000;
+
+.posts-search {
+  padding-top:30px;
+
+  .search-result-meta {
+    margin-bottom: 30px;
+
+    strong {
+      font-weight: bold;
+      color: lighten($search-strong-color, 10%);
+    }
+  }
+
+  strong.highlight {
+    color: $search-strong-color;
+    font-weight: bold;
+  }
+
+}

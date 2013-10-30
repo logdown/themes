@@ -1,0 +1,102 @@
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 14px;
+  }
+
+  .site-nav-links li {
+    font-size: 17.5px;
+    @include adjust-leading-to(2, 20px); // 20px:16px = 17.5px:14px
+  }
+  .site-nav-shadow {
+    height: relative-size($base-line-height*2);
+  }
+  .site-search {
+    @include adjust-font-size-to(20px);
+  }
+}
+
+@media screen and (max-width: 580px) {
+  html {
+    font-size: 12px;
+  }
+  body {
+    //@include baseline-grid-background(1.75em);
+  }
+
+  .site-header {
+    //background: rgba(0,0,0,.75);
+    @include padding-leader(1);
+    //@include padding-trailer(0.5);
+
+    .site-cover {
+      $diameter : 120px;
+      width: relative-size($diameter);
+      height: relative-size($diameter);
+      margin: margin-to-retain-rhythm($diameter) auto;
+    }
+    .site-title {
+      @include adjust-font-size-to(40px, 2.5);
+    }
+  }
+
+  .site-navbar {
+    &, html.js &, .site-nav-shadow, {
+      height: relative-size($base-line-height * 1.5);
+    }
+
+    &.in-search {
+      .site-nav-links {
+        @include transform(translateY($base-line-height * -1.5))
+      }
+      .site-search {
+        @include transform(translateY($base-line-height * -1.2))
+      }
+    }
+  }
+
+  .site-nav-links li {
+    @include adjust-leading-to(1.5, 20px);
+  }
+
+  .site-search {
+    @include transform(translateY(1px));
+  }
+
+  .main-content {
+    img.left, img.right {
+      float: none;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+
+  .blog-post {
+    padding: 0;
+  }
+
+  body > iframe[src^="http://logdown"] {
+    position: absolute !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .site-header {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .annual-archive {
+    .archive-item {
+      height: auto;
+      @include leader(1, $post-font-size);
+      @include trailer(1, $post-font-size);
+    }
+    .archive-date {
+      margin-top: 0;
+    }
+  }
+
+  .site-footer .theme-credit {
+    display: block;
+  }
+}

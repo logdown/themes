@@ -1,0 +1,62 @@
+// Variables
+$base-font-size: 16px;
+$base-line-height: 28px;
+$post-font-size: 20px;
+
+$h2-size: 36px;
+$h3-size: 30px;
+$h4-size: 24px;
+$h5-size: 20px;
+$h6-size: $h5-size;
+
+$font-title: "Avenir Next Condensed Demi Bold", "PT Sans Narrow", "Helvetica Neue Condensed", "Hiragino Kaku Gothic Pro", "Hiragino Sans GB", sans-serif;
+$font-serif: Georgia, "PT Serif", "Times New Roman", Times, serif;
+$font-mono: "Source Code Pro", Menlo, Monaco, Courier, monospace;
+
+$site-header-shadow: 0 1px 5px rgba(0,0,0,.75);
+$post-border-color: rgba(0,0,0,.15);
+
+$base-color: hsl(0,0%,35%);
+$base-color-dark: hsl(0,0%,27%);
+$base-color-darker: hsl(0,0%,18%);
+$base-color-light: hsl(0,0%,42%);
+$base-color-lighter: hsl(0,0%,51%);
+
+$search-active-color: white;
+$search-inactive-color: rgba(255,255,255,.5);
+$search-border-color: rgba(255,255,255,.75);
+
+// Font Declairations
+@font-face {
+  font-family: "Avenir Next Condensed Demi Bold";
+  src: local("AvenirNextCondensed-DemiBold"), local("Avenir Next Condensed Demi Bold");
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "Helvetica Neue Condensed";
+  src: local("Helvetica Neue Condensed Bold"), local("HelveticaNeue-CondensedBold");
+}
+
+// Functions
+@function image-url($image-name) {
+  @return url("../images/#{$image-name}");
+}
+
+@function relative-size($absolute-size, $base-size: $base-font-size) {
+  @return $absolute-size / $base-size * $font-unit;
+}
+
+@function margin-to-retain-rhythm($elem-height) {
+  $lines: lines-for-font-size($elem-height);
+  $margin-needed: ( ($base-line-height * $lines) - ($elem-height) ) / 2;
+
+  @return relative-size($margin-needed);
+}
+
+// Mixins
+@mixin make-circle($elem-width, $elem-border-width: 0) {
+  border-radius: (($elem-width + $elem-border-width*2) / 2);
+}
