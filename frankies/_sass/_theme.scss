@@ -31,12 +31,12 @@ body {
   }
 
   .site-cover {
-    $diameter : 135px;
+    $diameter : $base-line-height * 4.8;
     width: relative-size($diameter);
     height: relative-size($diameter);
     background: #fff image-url('default-avatar.png') no-repeat center bottom;
     overflow: hidden;
-    margin: margin-to-retain-rhythm(135px) auto;
+    margin: relative-size($base-line-height * 0.1) auto;
     border-radius: 50%;
 
     @include background-size(80%);
