@@ -12,12 +12,12 @@ p {
     @include trailer(1, $post-font-size);
   }
 
-  h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: $font-title;
     font-weight: 600;
   }
 
-  h2 {
+  h1, h2 {
     @include adjust-font-size-to($h2-size, 2, $post-font-size);
     @include leader(1, 36px);
     @include trailer(1, 36px);
@@ -41,7 +41,7 @@ p {
     @include trailer(1, 20px);
   }
 
-  h5 {
+  h1, h5 {
     text-transform: uppercase;
   }
 
