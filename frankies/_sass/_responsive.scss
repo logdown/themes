@@ -127,23 +127,21 @@
 }
 
 @media screen and (max-width: 400px) {
+  html {
+    font-size: 14px;
+  }
+
   .site-header, .main-content, .site-footer {
     padding-left: .75em;
     padding-right: .75em;
   }
+
   .site-header {
     @include padding-leader(.75);
     @include padding-trailer(.25);
-
-    .site-cover {
-      $diameter : $base-line-height * 3.6;
-      width: relative-size($diameter);
-      height: relative-size($diameter);
-      margin: relative-size($base-line-height * 0.2) auto;
-    }
-    .site-title {
-      @include adjust-font-size-to(30px, 1.5);
-    }
+  }
+  .site-title {
+    @include adjust-font-size-to(30px, 1.5);
   }
 
   .main-content {
