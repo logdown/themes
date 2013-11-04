@@ -83,20 +83,20 @@
     $table-font-size: $post-font-size - 2px;
     table {
       width: 100%;
-      font-size: relative-size($table-font-size, $post-font-size);
-      margin: relative-size($base-line-height, $table-font-size) auto;
-
-      @include adjust-leading-to(1.5, $table-font-size);
+      @include adjust-font-size-to($table-font-size, 1, $post-font-size);
+      @include leader(1, $table-font-size);
+      @include trailer(1, $table-font-size);
     }
     th, td {
-      padding: 0 0.5em;
+      @include padding-leader(0.25, $table-font-size);
+      @include padding-trailer(0.25, $table-font-size);
 
       &:first-child { padding-left: 1em; }
       &:last-child { padding-right: 1em; }
     }
     tr + tr {
       th, td {
-        line-height: relative-size($base-line-height*2 - 1, $table-font-size);
+        line-height: relative-size($base-line-height - 1, $table-font-size);
         border-top: 1px solid rgba(0,0,0,.1);
       }
     }

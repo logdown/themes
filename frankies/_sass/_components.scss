@@ -41,20 +41,22 @@
 
   table {
     min-width: 80%;
-    font-size: relative-size($table-font-size, $post-font-size);
-    margin: relative-size($base-line-height, $table-font-size) auto;
-
-    @include adjust-leading-to(2, $table-font-size);
+    margin: auto;
+    @include adjust-font-size-to($table-font-size, 1, $post-font-size);
+    @include leader(1, $table-font-size);
+    @include trailer(1, $table-font-size);
   }
   th, td {
     padding: 0 0.5em;
+    @include padding-leader(0.5, $table-font-size);
+    @include padding-trailer(0.5, $table-font-size);
 
     &:first-child { padding-left: 1em; }
     &:last-child { padding-right: 1em; }
   }
   tr + tr {
     th, td {
-      line-height: relative-size($base-line-height*2 - 1, $table-font-size);
+      line-height: relative-size($base-line-height - 1, $table-font-size);
       border-top: 1px solid rgba(0,0,0,.1);
     }
   }
