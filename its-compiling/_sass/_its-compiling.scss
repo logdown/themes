@@ -3,6 +3,7 @@
 @import "compass/css3/transition";
 // Font Awesome
 @import url(http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css);
+@import url(http://cdn-theme.logdown.io/utils/stylesheets/default_dropdown.css);
 
 // configurations
 $link-color: #2ea9df;
@@ -714,55 +715,10 @@ table.highlight {
 
 .category-dropdown {
   color: $heading-color;
-  display: inline-block;
-  position: relative;
-  margin-top: 0.8em;
+  margin-top: 1em;
 
-  .dropdown-toggle, [role=button] {
-    cursor: pointer;
-
-    & > * {
-      display: inline-block;
-      vertical-align: middle;
-    }
-  }
   .dropdown-menu, [role=menu] {
     line-height: 1.75;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    border-radius: 3px;
-    box-shadow: 0 3px 3px rgba(0,0,0,.5);
-    opacity: 1;
-
-    &.fade {
-      @include transition(opacity 150ms);
-    }
-
-    &.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    ul {
-      background-color: darken(white, 4%);
-      list-style: none;
-      margin: 0;
-      padding: 0.5em 0;
-      border: 1px solid rgba(0,0,0,.1);
-      border-radius: 3px;
-      white-space: nowrap;
-    }
-
-    a {
-      text-decoration: none;
-      padding: 0 1em;
-      border-bottom: none;
-      display: block;
-    }
-    a:hover {
-      color: inherit;
-      background-color: rgba(255,255,255,.7);
-    }
+    margin-top: 0.5em;
   }
 }
