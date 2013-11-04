@@ -137,28 +137,25 @@
   }
 
   .site-header {
-    @include padding-leader(.75);
     @include padding-trailer(.25);
-  }
-  .site-title {
-    @include adjust-font-size-to(30px, 1.5);
+
+    .site-title {
+      @include adjust-font-size-to(36px, 2);
+      @include padding-leader(.25, 36px);
+    }
   }
 
   .main-content {
     h1, h2, .post-title {
-      $new-size: $h2-size - 6px;
+      $new-size: $h2-size - 2px;
       @include adjust-font-size-to($new-size, 1.5, $post-font-size);
     }
 
     h3 {
-      $new-size: $h3-size - 4px;
+      $new-size: $h3-size - 1px;
       @include adjust-font-size-to($new-size, 1.5, $post-font-size);
     }
 
-    h4 {
-      $new-size: $h4-size - 1px;
-      @include adjust-font-size-to($new-size, 1, $post-font-size);
-    }
   }
 
   .annual-archive {
