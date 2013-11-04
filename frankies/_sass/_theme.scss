@@ -393,9 +393,8 @@ body {
   border-top: 1px solid $post-border-color;
   margin-top: -1px;
 
-  @include adjust-font-size-to($base-font-size, 2, $post-font-size);
-  @include leader(2);
-  @include trailer(-2);
+  @include adjust-font-size-to($base-font-size, 1, $post-font-size);
+  @include rhythm(2,.5,.5,-2); //leader, padding-leader, padding-trailer, trailer
 
   a {
     color: $base-color-light;

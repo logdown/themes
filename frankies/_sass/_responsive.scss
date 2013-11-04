@@ -115,14 +115,16 @@
     padding: 0;
   }
 
+  body > iframe[src^="http://logdown"] {
+    position: absolute !important;
+  }
+}
+
+@media screen and (max-width: 580px) and (min-width: 401px) {
   .site-footer {
     @include adjust-font-size-to(14px);
     @include padding-leader(0.5, 14px);
     @include padding-trailer(0.5, 14px);
-  }
-
-  body > iframe[src^="http://logdown"] {
-    position: absolute !important;
   }
 }
 
@@ -155,7 +157,6 @@
       $new-size: $h3-size - 1px;
       @include adjust-font-size-to($new-size, 1.5, $post-font-size);
     }
-
   }
 
   .annual-archive {
