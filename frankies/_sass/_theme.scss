@@ -129,6 +129,7 @@ body {
   li + li:before {
     content: '•';
     padding: 0 relative-size(10px);
+    opacity: .3;
   }
   a {
     color: white;
