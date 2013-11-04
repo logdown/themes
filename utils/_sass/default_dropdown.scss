@@ -1,0 +1,63 @@
+@import "compass/css3";
+
+.dropdown-menu {
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  border-radius: 3px;
+  box-shadow: 0 3px 3px rgba(0,0,0,.5);
+  opacity: 1;
+
+  &.fade {
+    @include transition(opacity 150ms);
+  }
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  ul {
+    background-color: darken(white, 4%);
+    list-style: none;
+    margin: 0;
+    padding: 0.5em 0;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  a {
+    text-decoration: none;
+    padding: 0 1em;
+    border-bottom: none;
+    display: block;
+  }
+  a:hover {
+    color: inherit;
+    background-color: rgba(255,255,255,.85);
+  }
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+
+  .dropdown-toggle, [role=button] {
+    cursor: pointer;
+  }
+  [role=menu] {
+    @extend .dropdown-menu;
+  }
+}
+
+.category-dropdown {
+  @extend .dropdown;
+
+  .dropdown-toggle, [role=button] {
+    & > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
