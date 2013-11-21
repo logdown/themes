@@ -7,7 +7,7 @@ article {
     padding-bottom: 1em;
     margin-bottom: 1em;
     background: $img-border bottom left repeat-x;
-    h1 {
+    h1, .entry-title {
       margin: 0;
       a { text-decoration: none;
         &:hover { text-decoration: underline; } }
@@ -28,7 +28,7 @@ article {
       background: $img-border bottom left repeat-x;
     }
   }
-  h2 {
+  .entry-content h2 {
     padding-top: 0.8em;
     background: $img-border top left repeat-x;
   }
@@ -91,7 +91,7 @@ article + article {
   padding: { top: 0; bottom: 0; }
   article { padding-top: 2em; }
   article header { background: none; padding-bottom: 0; }
-  article h1 {
+  article .entry-title {
     font-size: 2.2em;
     a { color: inherit; &:hover { color: $link-color-hover; } }
   }
