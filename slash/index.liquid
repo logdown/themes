@@ -40,10 +40,10 @@
           </ul>
         </nav>
 
-        <form action="{{ search_posts_url }}" class="search" method=
+        <form action="{{ blog.search_posts_url }}" class="search" method=
         "get">
-          <input autocomplete="off" class="search-field" name=
-          "q" results="0"><a class="button"></a>
+          <input required class="search-field" name=
+          "q" placeholder="Search blog..." x-webkit-speech><a class="button"></a>
         </form>
 
         <nav class="follow-me">
