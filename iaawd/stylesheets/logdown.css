@@ -1,0 +1,16 @@
+.article-list__item--archive {
+  margin-bottom: 0;
+}
+
+.article-list__item--archive .article__title {
+  margin-bottom: 0;
+}
+
+.pagination {
+  text-align: right;
+}
+
+.pagination__next,
+.pagination__prev {
+  margin-left: 20px;
+}
