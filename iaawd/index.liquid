@@ -4,14 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="http://cdn-theme.logdown.io/iaawd/stylesheets/style.css">
-  <link rel="stylesheet" href="http://cdn-theme.logdown.io/iaawd/stylesheets/logdown.css">
 </head>
-<body>
+<body class="logdown">
 
   <header class="l-header header">
     <div class="container clearfix">
       <div class="author author--horizontal l-header__author">
-        <a class="avatar author__avatar l-header__author__avatar" href="{{blog.absolute_url}}" style="background-image: url(http://www.gravatar.com/avatar/{{blog.author_gravatar_hash}}?s=100)">Home</a>
+        <a class="avatar author__avatar l-header__author__avatar" href="{{ blog.absolute_url }}" style="background-image: url(http://www.gravatar.com/avatar/{{ blog.author_gravatar_hash }}?s=100)">Home</a>
         <hgroup class="author__inter">
           <h2 class="author__inter__name l-header__author__avatar__inter__name">{{ blog.title }}</h2>
           <h3 class="author__inter__title">Web Developer @ I don't want to tell you</h3>
@@ -30,20 +29,22 @@
   <main role="main">
     <div class="container">
       {% block archives_page %}
-      <ul class="article-list">
+      <section class="archive">
         {% block archives %}
-        {% block posts %}
-        <li class="article-list__item article-list__item--archive">
-          <article class="article clearfix">
-            <header class="article__header">
-              <h1 class="article__title"><a href="{{ post.absolute_url }}">{{ post.title }}</a></h1>
-              <time class="article__date">{{ archive.year }}/{{ post.published_at.short_month }}/{{ post.published_at.day_of_month }}</time>
-            </header>
-          </article>
-        </li>
+        <ul class="article-list">
+          {% block posts %}
+          <li class="article-list__item">
+            <article class="article clearfix">
+              <header class="article__header">
+                <h1 class="article__title"><a href="./post.html">Etiam lobortis ut magna ac pellentesque</a></h1>
+                <time class="article__date">2014/02/28</time>
+              </header>
+            </article>
+          </li>
+          {% endblock %}
+        </ul>
         {% endblock %}
-        {% endblock %}
-      </ul>
+      </section>
       {% endblock %}
       
       {% block index_page|tags_page %}
@@ -99,8 +100,5 @@
       <p>Copyright © 2014 {{ blog.user_name }} . <span class="underline underline--grey">Theme iaawd by <a href="http://poying.me">poying</a></span></p>
     </div>
   </footer>
-
-  <script src="http://cdn-theme.logdown.io/iaawd/scripts/highlight.pack.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
