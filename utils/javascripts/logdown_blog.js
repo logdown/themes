@@ -20,10 +20,13 @@
   if (typeof document.querySelector == "undefined" || document.querySelector == null) return false;
 
   var categorySelect = document.querySelector('.category-dropdown'),
-      dropdownToggle = categorySelect.querySelector('[role=button]'),
-      dropdownMenu = categorySelect.querySelector('[role=menu]');
+      dropdownToggle = {},
+      dropdownMenu = {};
 
-  if (typeof dropdownMenu == "undefined" || dropdownMenu == null) return false;
+  if (typeof categorySelect == "undefined" || categorySelect == null) return false;
+
+  dropdownToggle = categorySelect.querySelector('[role=button]');
+  dropdownMenu = categorySelect.querySelector('[role=menu]');
 
   dropdownMenu.classList.add('hidden');
 
