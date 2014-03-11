@@ -179,4 +179,9 @@ article{
 .share{
 	padding: 15px 0;
 	@include border-shadow();
+
+	& > *,
+	 .fb_iframe_widget > span {
+	  vertical-align: top !important;
+	 }
 }
