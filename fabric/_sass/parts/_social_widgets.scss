@@ -1,0 +1,6 @@
+#content .share {
+ & > *,
+ .fb_iframe_widget > span {
+  vertical-align: top !important;
+ }
+}
