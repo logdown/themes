@@ -247,6 +247,11 @@ body {
     height: relative-size(20px);
     margin: relative-size($base-line-height) 0;
     padding: relative-size( ($base-line-height - 20px)/2 );
+
+    & > *,
+    .fb_iframe_widget > span {
+      vertical-align: top !important;
+    }
   }
 
   .post-footer {

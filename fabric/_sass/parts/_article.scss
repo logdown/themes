@@ -181,7 +181,7 @@ article{
 	@include border-shadow();
 
 	& > *,
-	 .fb_iframe_widget > span {
+	.fb_iframe_widget > span {
 	  vertical-align: top !important;
 	 }
 }
