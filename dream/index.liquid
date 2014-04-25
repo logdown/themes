@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="top-line"></div>
+  <div class="wrapper">
+  	<header class="header">
+  	  <div class="logo">
+  	    <h1><a href="/">{{ blog.title }}</a></h1>	
+			</div>
+
+			<nav class="nav">
+				<ul class="inline-list">
+					<li><a href="/">Home</a></li>
+          <li><a href="{{ blog.archives_url }}">Archive</a></li>
+          <li><a href="{{ blog.rss_url }}" target="_blank">feeds</a></li>
+        </ul>
+			</nav>
+
+			<div class="search">
+				<form accept-charset="UTF-8" action="{{ blog.search_posts_url }}" method="get">
+					<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+				 <input class="search-box" type="text" name="q" results="0" value="" placeholder="Search">
+				</form>
+      </div>
+  	</header>
+
+		<div class="content">
+			{% block search_page %}
+        <div class="posts-search">
+          <p class="search-result-meta">
+            Your search for <strong>“ {{ query_string }} ”</strong> matches <strong> {{ results_count }} </strong> results:
+          </p>
+      {% endblock %}
+
+      {% block tags_page %}
+        <div class="posts-search">
+          <p class="search-result-meta">
+            Posts match <strong>“ {{ tag_name }} ”</strong> tag:
+          </p>
+      {% endblock %}
+
+      {% block archives_page %}
+        <div class="post-container">
+          <div class="title">
+            <h2>Blog Archive</h2>
+          </div>
+          <div class="article">
+            {% block archives %}
+              <h3>{{archive.year}}</h3>
+
+              <ul class="archive-list">
+              {% block posts %}
+                <li class="archive">
+                  <span class="archive-date"><time>
+                    {{post.published_at.short_month}}
+                    {{post.published_at.day_of_month}}
+                  </time></span>
+                  <a href="{{post.absolute_url}}" class="archive-link">{{post.title}}</a>
+                </li>
+              {% endblock %}
+              </ul>
+
+            {% endblock %}
+          </div>
+        </div>
+			{% endblock %}
+
+		  {% block posts %}
+        <div class="post-container">
+		      <div class="rel-date" data-timestamp="{{post.published_at.timestamp}}"> {{ post.published_at.date }} </div> 
+          <div class="title">
+            <h2>
+              <a href="{{post.absolute_url}}">
+                {% block tags_page|index_page|show_page %}
+                  {{post.title}}
+                {% endblock %}
+
+                {% block search_page %}
+                  {{ post.title | highlight: query_string }}
+                {% endblock %}
+              </a>
+            </h2>
+					</div>
+
+					<div class="article">
+						{% block search_page %}
+              {{ post.content | search_content: query_string }}
+            {% endblock %}
+
+            {% block index_page|tags_page %}
+              {{ post.excerpt_content }}
+
+              {% block readmore %}
+                <a href="{{post.absolute_url}}" class="more">Read on →</a>
+              {% endblock %}
+						{% endblock %}
+
+            {% block show_page %}
+							{{ post.content }}
+
+							{% block tag_list %}
+								<div class="tags">Tags:
+									{% block tags %}
+										<a href="{{tag.url}}">{{tag.name}}</a>,
+									{% endblock %}
+								</div>
+							{% endblock %}
+
+							<div class="social-share group">
+                <div class="pull-right">
+                  {% block facebook_sharing %}
+                  <div class="fb-like" data-href="{{post.absolute_url}}" data-layout="button_count" data-send="false" data-show-faces="false" data-width="90"></div>
+                  {% endblock %}
+                </div>
+
+                <a href="#" style="dispaly:none; border-bottom:none;">&nbsp;</a>
+
+
+                {% block twitter_sharing %}
+                  <a href="https://twitter.com/share?" class="twitter-share-button">Tweet</a>
+                {% endblock %}
+
+                {% block google_plus_sharing %}
+                   <div class="g-plusone" data-size="medium"></div>
+                {% endblock %}
+
+              </div>
+            {% endblock %}
+							
+          </div>
+
+
+          <div style="clear: both;">&nbsp;</div>
+          {% block show_page %}
+            {% block disqus %}
+              {% disqus %}
+            {% endblock %}
+          {% endblock %}
+        </div>
+			{% endblock %}
+
+			{% block pagination %}
+      <div class="pagination pagination-centered">
+        <ul>
+          {% block previous_page %}
+            <li class="prev previous_page ">
+              <a href="{{previous_page_url}}">Previous</a>
+            </li>
+          {% endblock %}
+
+          {% block jump_pagination %}
+
+            {% block current_page %}
+              <li class="active">
+                <a href="#">{{page_number}}</a>
+              </li>
+            {% endblock %}
+
+            {% block page_gap %}
+              <li class="disabled">
+                <a href="#"><span class="gap">…</span></a>
+              </li>
+            {% endblock %}
+
+            {% block jump_page %}
+              <li>
+                <a href="{{page_url}}">{{page_number}}</a>
+              </li>
+            {% endblock %}
+
+          {% endblock %}
+
+          {% block next_page %}
+            <li class="next next_page ">
+              <a href="{{next_page_url}}">Next</a>
+            </li>
+          {% endblock %}
+        </ul>
+      </div>
+      {% endblock %}
+  	</div>
+
+	<footer class="footer">
+      <p>
+        <span>Copyright © 2014 {{ blog.user_name }} . </span>  Powered by <a href="http://logdown.com/">Logdown</a>.<br /> <a href="https://github.com/WithGJR/dream_theme">This theme</a> is designed by <a href="http://blog.cgmlife.net/">Kevin</a>
+      </p>
+	</footer>
+  </div>
+</body>
+</html>

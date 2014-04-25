@@ -1,0 +1,12 @@
+@mixin full_width {
+	width: 100%;
+}
+
+@mixin center_div {
+  margin: 0 auto;
+}
+
+@mixin reset_padding_and_margin {
+  padding: 0;
+  margin: 0;
+}

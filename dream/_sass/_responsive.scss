@@ -1,0 +1,54 @@
+@media screen and (max-width: 580px) {
+	img {
+		max-width: 95%;
+	}
+
+	.nav {
+		li {
+			margin: 0;
+			float: none;
+			width: 100%;
+		}
+	}
+
+	.search {
+		.search-box {
+			width: 90%;
+			height: 30px;
+		}
+	}
+
+	.post-container {
+		.rel-date {
+			width: 100%;
+			display:inline-block;
+			float:none;
+			margin: 1.0869565217391304% 1.0869565217391304%;
+		}
+
+		.article {
+	      .archive-list {
+
+	        li {
+             .archive-date {
+               display: inline-block;
+               width: 100%;
+               margin:  0;        
+             }
+            }      
+	      }
+		}
+
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.wrapper {
+		width: 90%;
+	}
+	
+	.post-container {
+		width: 95%;
+		padding: 1.6304347826086956% 1.6304347826086956%; /* 15 / 920 */
+	}
+}
