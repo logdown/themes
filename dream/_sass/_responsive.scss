@@ -19,7 +19,7 @@
 			width: 100%;
 			display:inline-block;
 			float:none;
-			margin: 1.0869565217391304% 1.0869565217391304%;
+			margin: percentage(10px/$context) percentage(10px/$context);
 		}
 
 		.article {
@@ -45,6 +45,6 @@
 	
 	.post-container {
 		width: 95%;
-		padding: 1.6304347826086956% 1.6304347826086956%; /* 15 / 920 */
+		padding: percentage(15px/$context) percentage(15px/$context);
 	}
 }

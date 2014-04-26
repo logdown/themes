@@ -1,5 +1,7 @@
 @import "mixin";
 
+$context: 920px;
+
 // color
 $white: #FFFFFF;
 $search-strong-color: #cc0000;
@@ -166,7 +168,6 @@ figure-code {
 		font: 85%/2.25;
 		text-indent: 0.5em;
 		text-shadow: 0 1px 0 rgba(255,255,255,.9);
-
 	}
 }
 
@@ -202,15 +203,15 @@ table.highlight {
 .header {
 	@include full_width;
 	@include center_div;
-	margin-bottom: 2.1739130434782608%; /* 20 / 920 */
+	margin-bottom: percentage(20px/$context);
 }
 
 .logo {
 	@include full_width;
 	@include center_div;
-	padding-bottom: 1.0869565217391304%; /* 10px / 920px */ 
-	margin-top: 2.1739130434782608%; /* 20 / 920 */
-	margin-bottom: 2.1739130434782608%; /* 20 / 920 */
+	padding-bottom: percentage(10px/$context);
+	margin-top: percentage(20px/$context); 
+	margin-bottom: percentage(20px/$context); 
 	text-align: center;
 
 	a:link, a:visited, a:hover, a:active {
@@ -280,13 +281,13 @@ table.highlight {
 	@include center_div;
 	margin-top: 20px; 
 	margin-bottom: 20px;
-	padding: 1.6304347826086956% 1.6304347826086956%; /* 15 / 920 */
+	padding: percentage(10px/$context) percentage(10px/$context);
 	background: $white;
 
 	.rel-date {
 		display: inline-block;
 		float:right;
-		margin-right: 1.0869565217391304%;  /* 10px / 920px */ 
+		margin-right: percentage(10px/$context);
 
 		color:#bababa;
 		font-weight:bold;
@@ -295,15 +296,15 @@ table.highlight {
 
 
 	.title {
-	  padding: 1.0869565217391304% 0 1.0869565217391304% 1.0869565217391304%;  /* 10px / 920px */ 
+	  padding: percentage(10px/$context) 0 percentage(10px/$context) percentage(10px/$context);
 	}
 
 	.article {
 		font-size: inherit;
-	  padding: 1.0869565217391304% 1.0869565217391304%;  /* 10px / 920px */ 
+	  padding: percentage(10px/$context) percentage(10px/$context);  /* 10px / 920px */ 
 
 		h1, h2, h3, h4, h5, h6 {
-			margin: 1.0869565217391304% 0 1.6304347826086956% 0;
+			margin: percentage(10px/$context) 0 percentage(10px/$context) 0;
 		}
 
 		.more {
@@ -323,8 +324,8 @@ table.highlight {
 		.tags {
 			display: inline-block;
 			@include full_width;
-			margin: 1.6304347826086956% 0 1.6304347826086956% 0; /* 15 / 920 */
-			padding: 1.6304347826086956% 0 1.6304347826086956% 0; /* 15 / 920 */
+			margin: percentage(15px/$context) 0 percentage(15px/$context) 0;
+			padding: percentage(15px/$context) 0 percentage(15px/$context) 0; 
 			border-top: 0.1em solid;
 
 			font-weight:bold;
@@ -346,11 +347,11 @@ table.highlight {
       font-size: 180%;
 
       li {
-        margin:  1.0869565217391304% 0  1.0869565217391304% 0;  /* 8/920 */
+        margin:  percentage(8px/$context) 0  percentage(8px/$context) 0;
 
         .archive-date {
           display: inline-block;
-          margin-right:  .5434782608695652%;  /* 5/920 */        
+          margin-right:  percentage(5px/$context);
         }
       }
     }
@@ -558,8 +559,8 @@ table.highlight {
 .footer {
   width: 100%;
   @include center_div;
-	margin-top: 1.6304347826086956%; /* 15 / 920 */
-	margin-bottom: 1.6304347826086956%; /* 15 / 920 */
+	margin-top: percentage(15px/$context);
+	margin-bottom: percentage(15px/$context);
 
   font-size: 0.7em;
   text-align: center;
