@@ -25,13 +25,15 @@
 		.article {
 	      .archive-list {
 	      	list-style-type: none;
-
+					
 	        li {
-             .archive-date {
-               display: inline-block;
-               width: 100%;
-               margin-top: percentage(15px/$context);
-               margin-bottom: percentage(15px/$context);
+	        	padding-left: percentage(20px/$context);
+          	margin-top: percentage(20px/$context);
+          	margin-bottom: percentage(20px/$context);
+          	border-left: 5px solid;
+
+            .archive-date {
+             	 display: none;
              }
           }      
 	      }
