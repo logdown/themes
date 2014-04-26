@@ -351,7 +351,12 @@ table.highlight {
 
         .archive-date {
           display: inline-block;
+          font-style: italic;
           margin-right:  percentage(5px/$context);
+        }
+
+        a {
+          color: darken(#2f8ce8, 15%);
         }
       }
     }
