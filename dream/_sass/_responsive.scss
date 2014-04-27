@@ -1,14 +1,39 @@
 @media screen and (max-width: 580px) {
+	#button {
+		display: block;
+		width: 100%;
+		height: 20px;
+		padding: 10px 0 10px 0;
+		background: black;
+		color: white;
+		float: right;
+		font-size: 180%;
+		text-align: center;
+	}
+
 	.nav {
+		display: none;
+
+		ul {
+			width: 100%;
+		}
+
 		li {
 		  display: inline-block;
 		  width: 100%;
-			margin: percentage(10px/$context) 0 percentage(10px/$context) 0;
+		  margin: 0;
 			float: none;
+
+			a {
+			 background: black;
+			 color: $white;
+			}
 		}
 	}
 
 	.search {
+		margin: 10px 0 0 0;
+		
 		.search-box {
 			width: 90%;
 			height: 30px;

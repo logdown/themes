@@ -220,6 +220,10 @@ table.highlight {
 	}
 }
 
+#button {
+  display: none;
+}
+
 .nav {
 	@include full_width;
 	text-align: center;
@@ -232,7 +236,7 @@ table.highlight {
 	li {
 		display: inline;
 		margin-left: 10px;
-		margin-right: 10px;
+    margin-right: 10px;
 		float: left;
 
 		a {
