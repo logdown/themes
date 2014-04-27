@@ -1,9 +1,10 @@
 @media screen and (max-width: 580px) {
 	.nav {
 		li {
-			margin: 0;
+		  display: inline-block;
+		  width: 100%;
+			margin: percentage(10px/$context) 0 percentage(10px/$context) 0;
 			float: none;
-			width: 100%;
 		}
 	}
 
