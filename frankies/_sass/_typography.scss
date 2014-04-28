@@ -7,7 +7,7 @@ p {
   @include adjust-font-size-to($post-font-size);
 
   p {
-    @include hyphenation;
+    @include hyphens(auto);
     @include leader(1, $post-font-size);
     @include trailer(1, $post-font-size);
   }
