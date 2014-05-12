@@ -68,6 +68,7 @@ ol, ul {
   }
 }
 
+
 ol {
   list-style-type: decimal;
 }
@@ -81,6 +82,7 @@ a {
 }
 
 blockquote {
+  margin: percentage(10px/$context) 0 percentage(10px/$context) 0;
   font-style: italic;
   border-left: .5em solid darken(white, 10%);
   padding-left: .5em;
@@ -310,6 +312,10 @@ table.highlight {
 		h1, h2, h3, h4, h5, h6 {
 			margin: percentage(10px/$context) 0 percentage(10px/$context) 0;
 		}
+    
+    ol, ul {
+      font-size: 1.8em;
+    } 
 
 		.more {
 			display:inline-block;
