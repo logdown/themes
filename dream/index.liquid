@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="./_sass/screen.css">
-  <link rel="stylesheet" type="text/css" href="stylesheets/font-awesome.min.css">
-  <script src="javascripts/jquery-1.9.1.min.js"></script>
-  <script src="javascripts/menu.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://cdn-theme.logdown.io/dream/stylesheets/screen.css">
+  <link rel="stylesheet" type="text/css" href="http://cdn-theme.logdown.io/dream/stylesheets/font-awesome.min.css">
+  <script src="http://cdn-theme.logdown.io/dream/javascripts/jquery-1.9.1.min.js"></script>
+  <script src="http://cdn-theme.logdown.io/dream/javascripts/menu.js"></script>
 </head>
 <body>
 	<div class="top-line"></div>
   <div class="wrapper">
   	<header class="header">
   	  <div class="logo">
-  	    <h1><a href="/">{{ blog.title }}</a></h1>	
+  	    <h1><a href="/">{{ blog.title }}</a></h1>
 			</div>
-      
+
       <span id="button"><i class="fa fa-bars"></i> Menu</span>
 			<nav class="nav">
 				<ul class="inline-list">
@@ -74,7 +74,7 @@
 
 		  {% block posts %}
         <div class="post-container">
-		      <div class="rel-date" data-timestamp="{{post.published_at.timestamp}}"> {{ post.published_at.date }} </div> 
+		      <div class="rel-date" data-timestamp="{{post.published_at.timestamp}}"> {{ post.published_at.date }} </div>
           <div class="title">
             <h2>
               <a href="{{post.absolute_url}}">
@@ -133,7 +133,7 @@
 
               </div>
             {% endblock %}
-							
+
           </div>
 
 
