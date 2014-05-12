@@ -1,0 +1,275 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="{{blog.author_display_name}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="http://cdn-theme.logdown.io/frankies/stylesheets/screen.css" />
+
+  <script src="http://cdn-theme.logdown.io/frankies/javascripts/zepto.1.0.min.js"></script>
+  <script src="http://cdn-theme.logdown.io/frankies/javascripts/modernizr.custom.32405.js"></script>
+  <script src="http://cdn-theme.logdown.io/frankies/javascripts/main.js"></script>
+
+  <!-- Fallback fonts from Google Webfonts -->
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|PT+Serif:400,700,400italic,700italic|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="site-header">
+        <a href="{{blog.absolute_url}}" class="header-link">
+          <div class="site-cover">
+            <img src="{{ blog.default_cover_url }}" />
+          </div>
+          <h1 class="site-title">{{ blog.title }}</h1>
+        </a>
+
+        <div class="site-navbar">
+          <nav role="navigation">
+            <h3 class="hide">Blog Navigation</h3>
+            <div class="site-nav-shadow"></div>
+            <ul class="inline-list site-nav-links">
+              <li><a href="{{blog.absolute_url}}">Home</a></li>
+              <li><a href="{{ blog.archives_url }}">Archives</a></li>
+              <li><a href="{{ blog.rss_url }}" target="_blank">RSS</a></li>
+              <li class="search-toggle"><a href="{{ blog.search_posts_url }}">Search</a></li>
+
+              {% block static_page_list %}
+                {% block static_pages %}
+                  <li><a href="{{ static_page.absolute_url }}">{{static_page.title}}</a></li>
+                {% endblock %}
+              {% endblock %}
+            </ul>
+
+            <form class="site-search" accept-charset="UTF-8" action="{{ blog.search_posts_url }}" method="get" role="search">
+
+              <button class="btn-cancel" type="button" title="Cancel Search">
+                <i class="icon-remove"></i>
+                <span class="hide">Cancel Search</span>
+              </button>
+
+              <input class="site-search-field" name="q" type="search" placeholder="Search blog..." x-webkit-speech />
+
+              <button class="btn-search" type="submit" title="Search">
+                <i class="icon-search"></i>
+                <span class="hide">Search</span>
+              </button>
+            </form>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content" role="main">
+      {% block search_page %}
+        <p class="search-result-meta">
+          Your search for <strong>“ {{ query_string }} ”</strong>
+          matches <strong> {{ results_count }} </strong> results:
+        </p>
+      {% endblock %}
+
+      {% block tags_page %}
+        <p class="search-result-meta">
+          Posts match <strong>“ {{ tag_name }} ”</strong> tag:
+        </p>
+      {% endblock %}
+
+      {% block archives_page|category_page %}
+        <div class="archive-page-header">
+          <div class="category-dropdown">
+
+            <div class="dropdown-toggle" role="button">
+              <h2 class="archive-page-title">
+                {% block archives_page %} Blog Archives {% endblock %}
+                {% block category_page %} Category: {{ category.name }} {% endblock %}
+              </h2>
+              {% block category_list %}<i class="icon-caret-down"></i>{% endblock %}
+            </div>
+
+            {% block category_list %}
+              <div class="dropdown-menu category-list" role="menu">
+                <h3 class="hide">Categories</h3>
+                <ul role="list">
+                  {% block categories %}
+                    <li class="category">
+                      <a href="{{ category.url }}">{{category.name}}  ({{category.count}})</a>
+                    </li>
+                  {% endblock %}
+                  <li class="category">
+                    <a href="{{ blog.archives_url }}">Archives</a>
+                  </li>
+                </ul>
+              </div>
+            {% endblock %}
+
+          </div>
+        </div>
+
+        {% block archives %}
+          <div class="annual-archive">
+            <h3 class="archive-year">{{archive.year}}</h3>
+
+            <ul class="archive-list" role="list">
+              {% block posts %}
+                <li class="archive-item">
+                  <div class="archive-date">
+                    <time datetime="{{ post.published_at.utc }}" pubdate>
+                      <span class="month">{{ post.published_at.short_month }}</span>
+                      <span class="day">{{ post.published_at.day_of_month }}</span>
+                    </time>
+                  </div>
+                  <div class="vertical-center archive-title"><a href="{{post.absolute_url}}" class="center-inner archive-link" role="link">
+                    {{post.title}}
+                  </a></div>
+                </li>
+              {% endblock %}
+            </ul>
+          </div>
+        {% endblock %}
+      {% endblock %}
+
+      {% block static_page %}
+        <article class="blog-post" role="article">
+          <div class="post-header">
+            <h2 class="post-title"><a href="{{static_page.absolute_url}}">{{static_page.title}}</a></h2>
+          </div>
+
+          <div class="post-content">
+            {{static_page.content}}
+          </div>
+        </article>
+      {% endblock %}
+
+
+      {% block posts %}
+        <article class="blog-post" role="article">
+          <div class="post-header">
+            <h2 class="post-title">
+              <a href="{{post.absolute_url}}">
+                {% block tags_page|index_page|show_page %}
+                  {{post.title}}
+                {% endblock %}
+
+                {% block search_page %}
+                  {{ post.title | highlight: query_string }}
+                {% endblock %}
+              </a>
+            </h2>
+          </div>
+          <div class="post-content">
+            {% block search_page %}
+              {{ post.content | search_content: query_string }}
+            {% endblock %}
+
+            {% block index_page|tags_page %}
+              {{ post.excerpt_content }}
+
+              {% block readmore %}
+                <a href="{{post.absolute_url}}" class="more-link">
+                  Read on <i class="icon-long-arrow-right"></i>
+                </a>
+              {% endblock %}
+            {% endblock %}
+
+            {% block show_page %}
+              {{ post.content }}
+            {% endblock %}
+          </div>
+
+          {% block show_page %}
+            <div class="post-social-share">
+              {% block twitter_sharing %}
+                <a href="https://twitter.com/share?" class="twitter-share-button">Tweet</a>
+              {% endblock %}
+
+              {% block google_plus_sharing %}
+                <div class="g-plusone" data-size="medium"></div>
+              {% endblock %}
+
+              {% block facebook_sharing %}
+                <div class="fb-like" data-href="{{post.absolute_url}}" data-layout="button_count" data-send="false" data-show-faces="false" data-width="90"></div>
+              {% endblock %}
+            </div>
+
+            <div class="group post-footer">
+              <footer>
+                <span class="post-meta pull-left">
+                  <time datetime="{{post.published_at.utc}}" pubdate>
+                    {{post.published_at.date}}
+                  </time>
+                </span>
+
+                {% block tag_list %}
+                  <ul class="inline-list tag-list pull-right">
+                    {% block tags %}
+                      <li class="tag">
+                        <a class="tag-link" href="{{tag.url}}">{{tag.name}}</a>
+                      </li>
+                    {% endblock %}
+                  </ul>
+                {% endblock %}
+              </footer>
+            </div>
+          {% endblock %}
+
+        </article>
+
+        {% block show_page %}
+
+          {% block disqus %}
+            {% disqus %}
+          {% endblock %}
+
+          <div class="group pagination">
+            {% block previous_post %}
+              <a class="prev" href="{{previous_post_url}}">
+                &larr; {{previous_post_title}}
+              </a>
+            {% endblock %}
+
+            {% block next_post %}
+              <a class="next" href="{{next_post_url}}">
+                {{next_post_title}} &rarr;
+              </a>
+            {% endblock %}
+          </div>
+
+        {% endblock %}
+
+      {% endblock %}
+
+      {% block pagination %}
+        <div class="group pagination">
+          {% block previous_page %}
+            <a class="next" href="{{previous_page_url}}">Newer &rarr;</a>
+          {% endblock %}
+
+          <a class="archive" href="{{ blog.archives_url }}">Blog Archives</a>
+
+          {% block next_page %}
+            <a class="prev" href="{{next_page_url}}">&larr; Older</a>
+          {% endblock %}
+        </div>
+      {% endblock %}
+    </div>
+
+    <div class="site-footer">
+      <footer>
+        <p>
+          &copy; 2013 {{ blog.user_name }}.
+          <span class="powered-by">
+            Powered by <a href="http://logdown.com/">Logdown</a>.
+          </span>
+          <span class="theme-credit">
+            Theme Frankies by <a href="http://about.me/zhusee">Zhusee</a>.
+          </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="http://cdn-theme.logdown.io/utils/javascripts/logdown_blog.js"></script>
+</body>
+</html>
