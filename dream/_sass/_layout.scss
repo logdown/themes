@@ -45,7 +45,7 @@ h6 {
 
 p {
   font-size: 1.8em ;
-	line-height: 1.7em; 
+	line-height: 1.7em;
 }
 
 img {
@@ -212,8 +212,8 @@ table.highlight {
 	@include full_width;
 	@include center_div;
 	padding-bottom: percentage(10px/$context);
-	margin-top: percentage(20px/$context); 
-	margin-bottom: percentage(20px/$context); 
+	margin-top: percentage(20px/$context);
+	margin-bottom: percentage(20px/$context);
 	text-align: center;
 
 	a:link, a:visited, a:hover, a:active {
@@ -246,7 +246,7 @@ table.highlight {
 			height: 20%;
 			text-decoration: none;
 			color: black;
-			font-size: 2em; 
+			font-size: 2em;
 			padding: 30px 30px;
 
 			&:hover {
@@ -273,7 +273,7 @@ table.highlight {
 	  border:1px solid #ccc;
 	  padding:0.25em 0.5em 0.25em 2em;
 	  font-size:0.75em;
-	  background:#f7f7f7;		
+	  background:#f7f7f7;
 	}
 }
 
@@ -285,7 +285,7 @@ table.highlight {
 .post-container {
 	width: 96.73913043478261%;
 	@include center_div;
-	margin-top: 20px; 
+	margin-top: 20px;
 	margin-bottom: 20px;
 	padding: percentage(10px/$context) percentage(10px/$context);
 	background: $white;
@@ -307,15 +307,20 @@ table.highlight {
 
 	.article {
 		font-size: inherit;
-	  padding: percentage(10px/$context) percentage(10px/$context);  /* 10px / 920px */ 
+	  padding: percentage(10px/$context) percentage(10px/$context);  /* 10px / 920px */
 
 		h1, h2, h3, h4, h5, h6 {
 			margin: percentage(10px/$context) 0 percentage(10px/$context) 0;
 		}
-    
+
     ol, ul {
       font-size: 1.8em;
-    } 
+
+      ol, ul {
+        font-size: inherit;
+        margin-left: 1em;
+      }
+    }
 
 		.more {
 			display:inline-block;
@@ -335,7 +340,7 @@ table.highlight {
 			display: inline-block;
 			@include full_width;
 			margin: percentage(15px/$context) 0 percentage(15px/$context) 0;
-			padding: percentage(15px/$context) 0 percentage(15px/$context) 0; 
+			padding: percentage(15px/$context) 0 percentage(15px/$context) 0;
 			border-top: 0.1em solid;
 
 			font-weight:bold;
@@ -390,7 +395,7 @@ table.highlight {
 //post-search
 .posts-search {
   padding-top:30px;
-  
+
   .search-result-meta {
     margin-bottom: 30px;
 
