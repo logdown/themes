@@ -1,15 +1,22 @@
+## Submit your own theme to Logdown
 
-## Submit theme to Logdown
+1. Fork this repository
+2. Create a new directory `your-theme-name`
+3. Create your theme and [test its result](#test-your-theme).
+4. Submit a pull request. ( Please also attach a proper license)
+5. We'll review your theme and put it on Logdown theme catelogue.
+6. Thanks for submitting!
 
-1. Fork this repo
-2. Create a new dirctory `your-theme-name`
+The theme API is available at: <https://github.com/logdown/themes-guide>
 
-follow this convention to design your theme.
+## Structure convention
+
+Please follow this convention to design your theme:
 
 ```
-.
-├── index.liquid
-├── _sass
+your-theme-name
+├── index.liquid  // The blog template
+├── _sass  // Will be compiled into stylesheets/
 │   ├── screen.scss
 │   ├── _layout.scss
 │   └── _components.scss
@@ -23,30 +30,15 @@ follow this convention to design your theme.
 │   ├── fontawesome-webfont.ttf
 │   └── fontawesome-webfont.woff
 ├── images
-│   ├── fancybox
-│   │   ├── blank.gif
-│   │   ├── fancybox_loading.gif
-│   │   └── fancybox_sprite.png
-│   ├── loading_gray.gif
-│   ├── loading_pacman.gif
-│   └── social
-│       ├── coderwall.png
-│       ├── delicious.png
-│       ├── facebook.png
-│       ├── github.png
-│       ├── google.png
-│       ├── linkedin.png
-│       ├── pinboard.png
-│       ├── pinterest.png
-│       ├── rss.png
-│       ├── stackoverflow.png
-│       └── twitter.png
-├── javascripts
-    ├── jquery.fancybox.pack.js
-    ├── md5.js
-    ├── slash.js
-    └── twitter.js
+│   └── any_images.jpg
+└── javascripts
+    ├── jquery.min.js
+    └── blog.js
 ```    
 
-3. Submit a pull request. ( Please also attach a proper license)
-4. After we review & merge pull request, your theme will appear on the theme list. 
+## Test your theme
+
+You can test how your theme will look like by apply your template to your Logdown blog via “Edit HTML”.
+
+We have prepared a test case markdown file so you can ensure most elements that might appear on a Logdown blog will be well covered in your design. Just create an article on Logdown and paste all contents from `testcase.md` to see the results.
+
